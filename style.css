@@ -23,23 +23,52 @@
     --transition: all 0.3s ease;
 }
 
-* {
+/* --- GLOBAL BOX MODEL & OVERFLOW RESET --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
-
-html {
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
     font-size: 16px;
 }
-
 body {
     font-family: var(--font-body);
     color: var(--text-main);
     background-color: var(--white);
     line-height: 1.6;
-    overflow-x: hidden;
+}
+
+/* --- IMAGES & CONTAINERS --- */
+img, video, iframe, embed, object {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- TYPOGRAPHY OVERFLOW PREVENTION --- */
+h1, h2, h3, h4, h5, h6,
+p, span, a, li, td, th, label {
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* --- TOUCH TARGET SIZE & MOBILE FORM SETTINGS --- */
+button, a, input[type="submit"],
+input[type="button"], select,
+[role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+    cursor: pointer;
+}
+input, select, textarea {
+    font-size: 16px !important;
+    max-width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -2015,5 +2044,248 @@ section {
 
 .star-selector i:hover {
     transform: scale(1.25);
+}
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVENESS OVERRIDES (Rules 3 to 17)
+   ========================================================================== */
+
+/* --- FLUID TYPOGRAPHY SCALE (Rule 8) --- */
+h1 { font-size: clamp(28px, 6vw, 72px) !important; }
+h2 { font-size: clamp(22px, 5vw, 48px) !important; }
+h3 { font-size: clamp(18px, 4vw, 32px) !important; }
+h4 { font-size: clamp(16px, 3vw, 24px) !important; }
+p, li { font-size: clamp(14px, 2vw, 18px) !important; }
+small, .caption, .label { font-size: clamp(11px, 1.5vw, 14px) !important; }
+
+/* --- SECTION PADDING & WRAPPERS (Rule 7) --- */
+@media (max-width: 768px) {
+    section {
+        padding-top: 48px !important;
+        padding-bottom: 48px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+    .container {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+}
+@media (max-width: 480px) {
+    section {
+        padding-top: 32px !important;
+        padding-bottom: 32px !important;
+    }
+}
+
+/* --- HERO SECTION FLUID DESIGN (Rule 4) --- */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 85vh !important;
+        height: auto !important;
+        padding: 100px 20px 60px !important;
+    }
+    .hero-container {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+        gap: 2.5rem !important;
+    }
+    .hero-subtitle {
+        margin: 0 auto 2rem !important;
+    }
+    .hero-image-wrapper {
+        max-width: 400px !important;
+        margin: 0 auto !important;
+    }
+}
+
+/* Hero & General Buttons Stacking (Rule 4 & 9) */
+@media (max-width: 480px) {
+    .hero-buttons, .btn-group, .button-row, .cta-group, .action-buttons {
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 12px !important;
+    }
+    .hero-buttons a, .hero-buttons button,
+    .btn-group a, .btn-group button,
+    .button-row a, .button-row button {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+}
+
+/* --- UNIVERSAL GRID & FLEX RESPONSIVENESS (Rule 5 & 6) --- */
+@media (max-width: 900px) {
+    .cards-grid-3, .education-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+@media (max-width: 600px) {
+    .cards-grid-3, .education-grid, .stats-container, .about-grid, .contact-grid, .media-row, .footer-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .cards-grid-2 {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* --- SPLIT / FLEX SPLIT LAYOUT STACK (Rule 6) --- */
+@media (max-width: 768px) {
+    .split-layout, .two-panel, .side-by-side, .about-grid {
+        flex-direction: column !important;
+    }
+    .split-layout > *, .two-panel > *, .side-by-side > *, .about-grid > * {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    /* About image surgery/portrait split spacing */
+    .about-image-wrapper {
+        margin-top: 2rem !important;
+        width: 100% !important;
+    }
+}
+
+/* --- MOBILE STICKY PANELS (Rule 17) --- */
+@media (max-width: 768px) {
+    .sticky-panel, .sticky-sidebar, .research-sidebar-sticky, [class*="sticky"] {
+        position: relative !important;
+        top: auto !important;
+        height: auto !important;
+    }
+    /* Sticky navbar adjust height */
+    .navbar {
+        padding: 0.75rem 0 !important;
+        height: 64px !important;
+    }
+}
+
+/* --- MOBILE BOTTOM SHEETS FOR MODALS (Rule 12) --- */
+@media (max-width: 768px) {
+    .modal-container {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        top: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: 90vh !important;
+        overflow-y: auto !important;
+        border-radius: 16px 16px 0 0 !important;
+        transform: translateY(100%) !important;
+        margin: 0 !important;
+        padding: 24px 20px !important;
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15) !important;
+    }
+    .modal-overlay.active .modal-container {
+        transform: translateY(0) !important;
+    }
+    /* Dashboard custom height and layout */
+    .dashboard-container {
+        border-radius: 20px 20px 0 0 !important;
+        padding: 2rem 1rem !important;
+    }
+}
+
+/* --- RESPONSIVE TABLES WITH IN-CONTAINER SCROLL (Rule 13) --- */
+.table-responsive, .appointments-table {
+    display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+.appointments-table table {
+    min-width: 600px !important;
+    width: 100% !important;
+}
+
+/* --- MOBILE FORMS & SUBMIT BUTTONS (Rule 11) --- */
+@media (max-width: 768px) {
+    .form-row, .form-row-2, .input-row {
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+    .form-row > *, .form-row-2 > *, .input-row > * {
+        width: 100% !important;
+    }
+    .submit-btn, form button[type="submit"] {
+        width: 100% !important;
+        padding: 16px !important;
+    }
+}
+
+/* --- DISABLE CARD HOVER ON TOUCH DEVICES (Rule 10) --- */
+@media (hover: none) {
+    .award-card:hover, .pub-card:hover, .clinic-card:hover, .review-card:hover, .article-card:hover {
+        transform: none !important;
+        box-shadow: var(--shadow-sm) !important;
+        border-color: var(--border-color) !important;
+    }
+}
+
+/* --- DISABLE CUSTOM CURSOR & DIALS ON TOUCH DEVICES (Rule 16) --- */
+@media (hover: none) and (pointer: coarse) {
+    body {
+        cursor: auto !important;
+    }
+    .custom-cursor, .custom-cursor-dot {
+        display: none !important;
+    }
+}
+
+/* --- PREVENT iOS ZOOM ON MOBILE FORM FIELDS (Rule 11) --- */
+@media (max-width: 768px) {
+    input, select, textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* --- FOOTER RESPONSIVE ADJUSTMENTS (Rule 15) --- */
+@media (max-width: 768px) {
+    footer {
+        padding: 40px 20px !important;
+        text-align: center !important;
+    }
+    footer .footer-grid {
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+        gap: 2rem !important;
+    }
+    .footer-bottom {
+        flex-direction: column !important;
+        gap: 1rem !important;
+        text-align: center !important;
+    }
+    .footer-bottom-links {
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+    }
+}
+
+/* --- DEDICATED RESEARCH SUBPAGE DYNAMIC SCALING --- */
+@media (max-width: 768px) {
+    .research-hero-title {
+        font-size: clamp(1.6rem, 5vw, 2.5rem) !important;
+        line-height: 1.3 !important;
+    }
+    .research-hero {
+        padding: 2.5rem 1.5rem !important;
+        margin-bottom: 2rem !important;
+    }
+    .research-page {
+        padding-top: 80px !important;
+        padding-bottom: 40px !important;
+    }
+    .research-layout {
+        gap: 2rem !important;
+    }
+    .research-card {
+        padding: 1.5rem !important;
+        border-radius: 12px !important;
+    }
+    .sidebar-inquiry-form {
+        padding: 1.5rem !important;
+    }
 }
 

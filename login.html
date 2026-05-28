@@ -14,6 +14,57 @@
     <!-- Custom CSS (compiled with login specific additions) -->
     <link rel="stylesheet" href="style.css">
     <style>
+        /* --- GLOBAL BOX MODEL & OVERFLOW RESET --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+            -webkit-text-size-adjust: 100%;
+        }
+        input, select, textarea {
+            font-size: 16px !important;
+            max-width: 100%;
+        }
+
+        /* --- RESPONSIVE OTP SCROLL & SHRUNK BOXES --- */
+        @media (max-width: 480px) {
+            .otp-digit-input {
+                width: 38px !important;
+                height: 44px !important;
+                font-size: 1.2rem !important;
+            }
+            .otp-inputs-wrapper {
+                gap: 0.4rem !important;
+            }
+            .login-card {
+                padding: 1.5rem !important;
+                margin: 0 10px !important;
+            }
+            .back-to-home {
+                top: 1rem !important;
+                left: 1rem !important;
+                font-size: 0.85rem !important;
+            }
+        }
+        @media (max-width: 360px) {
+            .otp-digit-input {
+                width: 30px !important;
+                height: 38px !important;
+                font-size: 1rem !important;
+            }
+            .otp-inputs-wrapper {
+                gap: 0.25rem !important;
+            }
+            .login-card {
+                padding: 1rem !important;
+            }
+        }
+
         /* Dedicated Login Page styling for high-end visual aesthetics */
         body.login-page-body {
             background: radial-gradient(circle at center, #112240 0%, #0A1628 100%);
