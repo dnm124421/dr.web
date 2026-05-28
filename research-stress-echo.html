@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research: Stress Echo vs CT Angiography — Dr. Ayesha Sharma</title>
+    <meta name="description" content="A clinical trial comparing stress echocardiography and CT angiography in diagnosing stable coronary artery disease.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .research-page {
+            padding-top: 100px;
+            padding-bottom: 80px;
+            background-color: var(--bg-light);
+            min-height: 100vh;
+        }
+        
+        .research-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        
+        .research-breadcrumb a {
+            color: var(--primary);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .research-breadcrumb a:hover {
+            color: var(--secondary);
+        }
+        
+        .research-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #152A4A 100%);
+            color: var(--white);
+            padding: 4rem 3rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .research-hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .research-hero .badge-gold {
+            background-color: var(--secondary);
+            color: var(--primary);
+            font-weight: 600;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .research-hero-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+        }
+
+        .research-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 1.5rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .research-meta-item strong {
+            display: block;
+            color: var(--secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+        }
+
+        .research-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+
+        @media (max-width: 992px) {
+            .research-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .research-card {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+            border: 1px solid rgba(10, 22, 40, 0.05);
+        }
+
+        .research-section-title {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--secondary);
+            padding-left: 1rem;
+        }
+
+        .abstract-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            font-style: italic;
+            background-color: rgba(201, 168, 76, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 2px solid var(--secondary);
+        }
+
+        .findings-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 576px) {
+            .findings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .finding-card {
+            background-color: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-top: 3px solid var(--secondary);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .finding-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .finding-stat {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-heading);
+        }
+
+        .finding-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .research-sidebar-sticky {
+            position: sticky;
+            top: 100px;
+        }
+
+        .research-illustration {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+            border: 2px solid var(--secondary);
+            transition: var(--transition);
+            background-color: var(--primary);
+        }
+
+        .research-illustration:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .research-illustration img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        .metric-list {
+            margin-top: 1rem;
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+
+        .metric-name {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .metric-val {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .sidebar-inquiry-form {
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            margin-top: 2rem;
+        }
+
+        .sidebar-inquiry-title {
+            color: var(--secondary);
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-inquiry-form label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .sidebar-inquiry-form input,
+        .sidebar-inquiry-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--white);
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            font-family: var(--font-body);
+        }
+
+        .sidebar-inquiry-form input:focus,
+        .sidebar-inquiry-form textarea:focus {
+            border-color: var(--secondary);
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-inquiry-form button {
+            background-color: var(--secondary);
+            color: var(--primary);
+            font-weight: 600;
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .sidebar-inquiry-form button:hover {
+            background-color: var(--secondary-hover);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000;">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">Dr. Ayesha Sharma</a>
+            <div class="nav-links">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#research" class="nav-link active">Research</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <a href="index.html#contact" class="btn-gold nav-book-btn">Book Appointment</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="research-page">
+        <div class="container">
+            
+            <div class="research-breadcrumb">
+                <a href="index.html">Home</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a href="index.html#research">Research & Publications</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>Stress Echo vs CT Angiography</span>
+            </div>
+
+            <div class="research-hero">
+                <span class="badge-gold">Diagnostic Imaging</span>
+                <h1 class="research-hero-title">Stress Echocardiography vs CT Angiography in Stable Coronary Disease</h1>
+                <div class="research-meta-grid">
+                    <div class="research-meta-item">
+                        <strong>Published In</strong>
+                        European Heart Journal
+                    </div>
+                    <div class="research-meta-item">
+                        <strong>Publication Date</strong>
+                        April 2020
+                    </div>
+                    <div class="research-meta-item">
+                        <strong>Primary DOI</strong>
+                        <a href="https://doi.org/10.1093/eurheartj/ehz994" target="_blank" style="color: var(--secondary); text-decoration: underline;">10.1093/eurheartj/ehz994</a>
+                    </div>
+                    <div class="research-meta-item">
+                        <strong>Co-Authors</strong>
+                        Dr. Ayesha Sharma, Sung-Min Lee
+                    </div>
+                </div>
+            </div>
+
+            <div class="research-layout">
+                
+                <div class="research-main">
+                    
+                    <div class="research-card">
+                        <h2 class="research-section-title">Abstract</h2>
+                        <div class="abstract-text">
+                            "A prospective head-to-head clinical trial comparing diagnostic accuracy, downstream referral for invasive angiography, total cost of care, and 3-year clinical outcomes in symptomatic patients referred for stress echocardiography versus computed tomography angiography (CTA)."
+                        </div>
+                        <p>Stable coronary artery disease requires accurate, timely diagnosis to plan effective treatment. Both stress echocardiography (evaluating wall motion during exercise/stress) and coronary CT angiography (directly visualizing coronary anatomy) are widely used. This study compares their diagnostic and economic outcomes head-to-head.</p>
+                    </div>
+
+                    <div class="research-card">
+                        <h2 class="research-section-title">Introduction & Clinical Comparison</h2>
+                        <p>Stress echocardiography evaluates functional ischemia (heart muscle strain under stress), whereas CT angiography (CTA) is a structural test that directly visualizes plaque buildup. Selecting the optimal test impacts downstream diagnostic steps and total healthcare costs.</p>
+                        <p>Our research evaluated a large symptomatic cohort to help clinical teams select the most appropriate diagnostic path for suspected stable coronary disease.</p>
+                    </div>
+
+                    <div class="research-card">
+                        <h2 class="research-section-title">Research Methodology</h2>
+                        <p>The trial utilized a prospective, randomized diagnostic registry across three heart imaging academies.</p>
+                        <ul style="list-style: disc; padding-left: 1.5rem; margin-top: 1rem; margin-bottom: 1rem;">
+                            <li style="margin-bottom: 0.5rem;"><strong>Patient Database:</strong> 1,400 symptomatic outpatient subjects with suspected coronary disease.</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>Arm A:</strong> Stress echocardiography (exercise or pharmacological).</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>Arm B:</strong> Multi-detector Computed Tomography Angiography (CTA).</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>Follow-up Strategy:</strong> Referral rates for invasive coronary angiograms and 3-year cardiac event tracking.</li>
+                        </ul>
+                    </div>
+
+                    <div class="research-card">
+                        <h2 class="research-section-title">Key Findings</h2>
+                        
+                        <div class="findings-grid">
+                            <div class="finding-card">
+                                <div class="finding-stat">91.2%</div>
+                                <div class="finding-label">Diagnostic Accuracy Rate (CTA)</div>
+                            </div>
+                            <div class="finding-card">
+                                <div class="finding-stat">88.4%</div>
+                                <div class="finding-label">Diagnostic Accuracy Rate (Stress Echo)</div>
+                            </div>
+                            <div class="finding-card">
+                                <div class="finding-stat">1.4k</div>
+                                <div class="finding-label">Symptomatic Patient Records Evaluated</div>
+                            </div>
+                            <div class="finding-card">
+                                <div class="finding-stat">-22%</div>
+                                <div class="finding-label">Downstream Diagnostic Costs (Stress Echo)</div>
+                            </div>
+                        </div>
+
+                        <p>While CT angiography showed slightly higher anatomical diagnostic accuracy, stress echocardiography was more cost-effective and resulted in fewer unnecessary invasive angiograms for non-obstructive disease.</p>
+                    </div>
+
+                    <div class="research-card">
+                        <h2 class="research-section-title">Conclusion & Clinical Recommendations</h2>
+                        <p>Both tests are valuable diagnostic tools. CT angiography offers excellent structural visualization to rule out disease early, while stress echocardiography provides functional insight to guide cost-effective clinical management and reduce unnecessary invasive procedures.</p>
+                    </div>
+
+                </div>
+
+                <div class="research-sidebar">
+                    <div class="research-sidebar-sticky">
+                        
+                        <div class="research-illustration">
+                            <img src="paper_echocardiography.png" alt="Stress Echocardiogram and CT Angiography Scans Comparison">
+                        </div>
+
+                        <div class="research-card" style="padding: 1.5rem; margin-bottom: 0;">
+                            <h3 style="font-family: var(--font-heading); color: var(--primary); font-size: 1.25rem; margin-bottom: 1rem; border-bottom: 2px solid var(--secondary); padding-bottom: 0.5rem;">
+                                Publication Metrics
+                            </h3>
+                            <div class="metric-list">
+                                <div class="metric-row">
+                                    <span class="metric-name">Citations (Google Scholar)</span>
+                                    <span class="metric-val">102</span>
+                                </div>
+                                <div class="metric-row">
+                                    <span class="metric-name">Journal Impact Factor</span>
+                                    <span class="metric-val">35.85 (Eur Heart J)</span>
+                                </div>
+                                <div class="metric-row">
+                                    <span class="metric-name">Research Category</span>
+                                    <span class="metric-val" style="color: var(--secondary); font-weight: 700;">Diagnostic Imaging</span>
+                                </div>
+                                <div class="metric-row">
+                                    <span class="metric-name">Peer Reviewed</span>
+                                    <span class="metric-val" style="color: var(--success);"><i class="fa-solid fa-circle-check"></i> Yes</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-inquiry-form">
+                            <h3 class="sidebar-inquiry-title"><i class="fa-solid fa-circle-question"></i> Research Inquiry</h3>
+                            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 1rem;">Have professional questions or wish to request the comparative trial data?</p>
+                            <form id="inquiryForm" onsubmit="event.preventDefault(); submitInquiry();">
+                                <label for="inqName">Your Name</label>
+                                <input type="text" id="inqName" placeholder="Dr. Sarah Jenkins" required>
+                                
+                                <label for="inqEmail">Email Address</label>
+                                <input type="email" id="inqEmail" placeholder="sarah.jenkins@hospital.org" required>
+                                
+                                <label for="inqMessage">Your Inquiry</label>
+                                <textarea id="inqMessage" rows="3" placeholder="I would like to request the downstream cost analysis spreadsheet..." required></textarea>
+                                
+                                <button type="submit">Submit Request <i class="fa-solid fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer" style="background-color: var(--primary); color: var(--white); padding: 4rem 2rem 2rem; margin-top: 5rem; border-top: 3px solid var(--secondary);">
+        <div class="container text-center">
+            <h2 style="font-family: var(--font-heading); color: var(--secondary); margin-bottom: 1rem;">Dr. Ayesha Sharma, MD, DM</h2>
+            <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 2rem;">Dedicated to excellence in cardiac care, advanced clinical research, and training the next generation of cardiological specialists.</p>
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 1.5rem; color: rgba(255,255,255,0.5); font-size: 0.9rem;">
+                &copy; 2026 Dr. Ayesha Sharma. All rights reserved. | <a href="index.html#home" style="color: var(--secondary);">Back to Homepage</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast-notification">
+        <i class="fa-solid fa-circle-check" id="toastIcon"></i>
+        <div class="toast-content">
+            <span class="toast-title" id="toastTitle">Success</span>
+            <span id="toastMessage">Your research inquiry has been submitted.</span>
+        </div>
+        <button class="toast-close" onclick="document.getElementById('toast').classList.remove('active');">&times;</button>
+    </div>
+
+    <script>
+        function submitInquiry() {
+            const toast = document.getElementById('toast');
+            toast.className = 'toast-notification active success';
+            document.getElementById('inquiryForm').reset();
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>

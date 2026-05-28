@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research: Gender Disparities in Cardiac Care — Dr. Ayesha Sharma</title>
+    <meta name="description" content="A study on diagnostic speed, drug therapy, and clinical outcomes differences between female and male cohorts presenting with acute coronary symptoms.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .research-page {
+            padding-top: 100px;
+            padding-bottom: 80px;
+            background-color: var(--bg-light);
+            min-height: 100vh;
+        }
+        
+        .research-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        
+        .research-breadcrumb a {
+            color: var(--primary);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .research-breadcrumb a:hover {
+            color: var(--secondary);
+        }
+        
+        .research-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #152A4A 100%);
+            color: var(--white);
+            padding: 4rem 3rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .research-hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .research-hero .badge-gold {
+            background-color: var(--secondary);
+            color: var(--primary);
+            font-weight: 600;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .research-hero-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+        }
+
+        .research-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 1.5rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .research-meta-item strong {
+            display: block;
+            color: var(--secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+        }
+
+        .research-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+
+        @media (max-width: 992px) {
+            .research-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .research-card {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+            border: 1px solid rgba(10, 22, 40, 0.05);
+        }
+
+        .research-section-title {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--secondary);
+            padding-left: 1rem;
+        }
+
+        .abstract-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            font-style: italic;
+            background-color: rgba(201, 168, 76, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 2px solid var(--secondary);
+        }
+
+        .findings-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 576px) {
+            .findings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .finding-card {
+            background-color: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-top: 3px solid var(--secondary);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .finding-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .finding-stat {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-heading);
+        }
+
+        .finding-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .research-sidebar-sticky {
+            position: sticky;
+            top: 100px;
+        }
+
+        .research-illustration {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+            border: 2px solid var(--secondary);
+            transition: var(--transition);
+            background-color: var(--primary);
+        }
+
+        .research-illustration:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .research-illustration img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        .metric-list {
+            margin-top: 1rem;
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+
+        .metric-name {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .metric-val {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .sidebar-inquiry-form {
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            margin-top: 2rem;
+        }
+
+        .sidebar-inquiry-title {
+            color: var(--secondary);
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-inquiry-form label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .sidebar-inquiry-form input,
+        .sidebar-inquiry-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--white);
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            font-family: var(--font-body);
+        }
+
+        .sidebar-inquiry-form input:focus,
+        .sidebar-inquiry-form textarea:focus {
+            border-color: var(--secondary);
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-inquiry-form button {
+            background-color: var(--secondary);
+            color: var(--primary);
+            font-weight: 600;
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .sidebar-inquiry-form button:hover {
+            background-color: var(--secondary-hover);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000;">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">Dr. Ayesha Sharma</a>
+            <div class="nav-links">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#research" class="nav-link active">Research</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <a href="index.html#contact" class="btn-gold nav-book-btn">Book Appointment</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="research-page">
+        <div class="container">
+            
+            <div class="research-breadcrumb">
+                <a href="index.html">Home</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a href="index.html#research">Research & Publications</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>Gender Disparities in Cardiac Care</span>
+            </div>
+
+            <div class="research-hero">
+                <span class="badge-gold">Sociological Medicine</span>
+                <h1 class="research-hero-title">Gender Disparities in Cardiac Care Delivery: A Retrospective Analysis</h1>
+                <div class="research-meta-grid">
+                    <div class="research-meta-item">
+                        <strong>Published In</strong>
+                        The Lancet
+                    </div>
+                    <div class="research-meta-item">
+                        <strong>Publication Date</strong>
+                        August 2022
+                    </div>
+                    <div class="research-meta-item">
+                        <strong>Primary DOI</strong>
+                        <a href="https://doi.org/10.1016/S0140-6736(22)01104-5" target="_blank" style="color: var(--secondary); text-decoration: underline;">10.1016/S0140-6736(22)01104-5</a>
+                    </div>
+                    <div class="research-meta-item">
+                        <strong>Co-Authors</strong>
+                        Dr. Ayesha Sharma, Minu Gupta
+                    </div>
+                </div>
+            </div>
+
+            <div class="research-layout">
+                
+                <div class="research-main">
+                    
+                    <div class="research-card">
+                        <h2 class="research-section-title">Abstract</h2>
+                        <div class="abstract-text">
+                            "A retrospective observational study tracking differences in diagnostic speeds, clinical referral practices, drug therapy optimization, and 1-year cardiac survival rates between female and male cohorts presenting with acute coronary syndromes."
+                        </div>
+                        <p>Cardiovascular disease is often incorrectly viewed as primarily affecting men. This bias leads to systemic diagnostic delays and lower referral rates for key interventional procedures in female cohorts. This paper examines clinical data to highlight these disparities and identify opportunities to improve equity and patient outcomes.</p>
+                    </div>
+
+                    <div class="research-card">
+                        <h2 class="research-section-title">Introduction & Problem Context</h2>
+                        <p>Female patients presenting with myocardial infarction often exhibit different symptoms than the classic chest pain typically seen in male patients. These atypical presentations—such as shortness of breath, fatigue, or jaw pain—frequently lead to misdiagnosis in emergency rooms. This delay in recognizing ischemic signs can severely impact survival rates and recovery paths.</p>
+                        <p>This registry-based analysis aims to highlight critical areas where diagnostic protocols can be updated to ensure equal care quality for all patients.</p>
+                    </div>
+
+                    <div class="research-card">
+                        <h2 class="research-section-title">Research Methodology</h2>
+                        <p>We analyzed clinical records from a multi-center registry across five major tertiary academies.</p>
+                        <ul style="list-style: disc; padding-left: 1.5rem; margin-top: 1rem; margin-bottom: 1rem;">
+                            <li style="margin-bottom: 0.5rem;"><strong>Patient Records:</strong> 15,400 acute coronary syndrome records over 4 years.</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>Variables Tracked:</strong> Door-to-ECG time, angiogram referrals, beta-blocker/statin prescribing rates, and 12-month survival rates.</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>Analysis:</strong> Multivariable regression to control for age and comorbidities.</li>
+                        </ul>
+                    </div>
+
+                    <div class="research-card">
+                        <h2 class="research-section-title">Key Findings</h2>
+                        
+                        <div class="findings-grid">
+                            <div class="finding-card">
+                                <div class="finding-stat">+18 min</div>
+                                <div class="finding-label">Average Diagnostic Delay in Female Cases</div>
+                            </div>
+                            <div class="finding-card">
+                                <div class="finding-stat">34.5%</div>
+                                <div class="finding-label">Lower Referral Rate for Angiography</div>
+                            </div>
+                            <div class="finding-card">
+                                <div class="finding-stat">15.4k</div>
+                                <div class="finding-label">Demographic Patient Profiles Tracked</div>
+                            </div>
+                            <div class="finding-card">
+                                <div class="finding-stat">2.4x</div>
+                                <div class="finding-label">Increased Relative Risk of Re-hospitalization</div>
+                            </div>
+                        </div>
+
+                        <p>The study found that even when controlling for age and diabetes status, female patients were significantly less likely to be discharged with standard guideline-directed medical therapy (GDMT).</p>
+                    </div>
+
+                    <div class="research-card">
+                        <h2 class="research-section-title">Proposed Solutions & Clinical Impact</h2>
+                        <p>To address these disparities, we must adopt gender-specific diagnostic protocols in emergency triage. This includes educating clinicians on atypical symptoms and implementing standardized angiogram and discharge guidelines to ensure equal, high-quality care for all cardiac patients.</p>
+                    </div>
+
+                </div>
+
+                <div class="research-sidebar">
+                    <div class="research-sidebar-sticky">
+                        
+                        <div class="research-illustration">
+                            <img src="paper_gender_disparity.png" alt="Gender Disparities Cardiac Research Graphic">
+                        </div>
+
+                        <div class="research-card" style="padding: 1.5rem; margin-bottom: 0;">
+                            <h3 style="font-family: var(--font-heading); color: var(--primary); font-size: 1.25rem; margin-bottom: 1rem; border-bottom: 2px solid var(--secondary); padding-bottom: 0.5rem;">
+                                Publication Metrics
+                            </h3>
+                            <div class="metric-list">
+                                <div class="metric-row">
+                                    <span class="metric-name">Citations (Google Scholar)</span>
+                                    <span class="metric-val">198</span>
+                                </div>
+                                <div class="metric-row">
+                                    <span class="metric-name">Journal Impact Factor</span>
+                                    <span class="metric-val">168.9 (The Lancet)</span>
+                                </div>
+                                <div class="metric-row">
+                                    <span class="metric-name">Research Category</span>
+                                    <span class="metric-val" style="color: var(--secondary); font-weight: 700;">Sociological Medicine</span>
+                                </div>
+                                <div class="metric-row">
+                                    <span class="metric-name">Peer Reviewed</span>
+                                    <span class="metric-val" style="color: var(--success);"><i class="fa-solid fa-circle-check"></i> Yes</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-inquiry-form">
+                            <h3 class="sidebar-inquiry-title"><i class="fa-solid fa-circle-question"></i> Research Inquiry</h3>
+                            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 1rem;">Interested in participating in gender-specific triage guidelines projects?</p>
+                            <form id="inquiryForm" onsubmit="event.preventDefault(); submitInquiry();">
+                                <label for="inqName">Your Name</label>
+                                <input type="text" id="inqName" placeholder="Dr. Sarah Jenkins" required>
+                                
+                                <label for="inqEmail">Email Address</label>
+                                <input type="email" id="inqEmail" placeholder="sarah.jenkins@hospital.org" required>
+                                
+                                <label for="inqMessage">Your Inquiry</label>
+                                <textarea id="inqMessage" rows="3" placeholder="I would like to join the collaborative workgroup on emergency triage..." required></textarea>
+                                
+                                <button type="submit">Submit Request <i class="fa-solid fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer" style="background-color: var(--primary); color: var(--white); padding: 4rem 2rem 2rem; margin-top: 5rem; border-top: 3px solid var(--secondary);">
+        <div class="container text-center">
+            <h2 style="font-family: var(--font-heading); color: var(--secondary); margin-bottom: 1rem;">Dr. Ayesha Sharma, MD, DM</h2>
+            <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 2rem;">Dedicated to excellence in cardiac care, advanced clinical research, and training the next generation of cardiological specialists.</p>
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 1.5rem; color: rgba(255,255,255,0.5); font-size: 0.9rem;">
+                &copy; 2026 Dr. Ayesha Sharma. All rights reserved. | <a href="index.html#home" style="color: var(--secondary);">Back to Homepage</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast-notification">
+        <i class="fa-solid fa-circle-check" id="toastIcon"></i>
+        <div class="toast-content">
+            <span class="toast-title" id="toastTitle">Success</span>
+            <span id="toastMessage">Your research inquiry has been submitted.</span>
+        </div>
+        <button class="toast-close" onclick="document.getElementById('toast').classList.remove('active');">&times;</button>
+    </div>
+
+    <script>
+        function submitInquiry() {
+            const toast = document.getElementById('toast');
+            toast.className = 'toast-notification active success';
+            document.getElementById('inquiryForm').reset();
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>

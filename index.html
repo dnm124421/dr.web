@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Ayesha Sharma — Senior Cardiologist</title>
+    <meta name="description" content="Delivering world-class cardiovascular care through a unique blend of clinical expertise, cutting-edge research, and a deeply personalized approach to patient well-being.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 📌 GLOBAL FIXED / FLOATING ELEMENTS -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="brand-logo">Dr. Ayesha Sharma</a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#achievements" class="nav-link">Achievements</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#research" class="nav-link">Research</a>
+                <a href="#clinics" class="nav-link">Clinics</a>
+                <a href="#reviews" class="nav-link">Reviews</a>
+                <a href="#media" class="nav-link">Media</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="nav-actions">
+                <a href="login.html" class="nav-login-btn" id="openLoginModalBtn">
+                    <i class="fa-regular fa-user"></i> Patient Login
+                </a>
+                <div class="logged-in-state" id="loggedInState" style="display: none;">
+                    <div class="user-dropdown">
+                        <button class="user-btn" id="userBtn">
+                            <img src="https://ui-avatars.com/api/?name=Patient&background=0A1628&color=C9A84C" alt="User" class="user-avatar">
+                            <span class="user-name">John Doe</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="#" id="myAppointmentsBtn"><i class="fa-regular fa-calendar"></i> My Appointments</a>
+                            <a href="#"><i class="fa-regular fa-user-circle"></i> My Profile</a>
+                            <a href="#" id="logoutBtn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="#contact" class="btn-gold nav-book-btn">Book Appointment</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Social Media Bar -->
+    <aside class="social-bar">
+        <a href="#" class="social-link x-twitter"><i class="fa-brands fa-x-twitter"></i><span class="social-label">→ X / Twitter</span></a>
+        <a href="#" class="social-link linkedin"><i class="fa-brands fa-linkedin-in"></i><span class="social-label">→ LinkedIn</span></a>
+        <a href="#" class="social-link instagram"><i class="fa-brands fa-instagram"></i><span class="social-label">→ Instagram</span></a>
+        <a href="#" class="social-link youtube"><i class="fa-brands fa-youtube"></i><span class="social-label">→ YouTube</span></a>
+        <a href="#" class="social-link facebook"><i class="fa-brands fa-facebook-f"></i><span class="social-label">→ Facebook</span></a>
+        <a href="#" class="social-link researchgate"><i class="fa-brands fa-researchgate"></i><span class="social-label">→ ResearchGate</span></a>
+        <a href="#" class="social-link scholar"><i class="fa-solid fa-graduation-cap"></i><span class="social-label">→ Google Scholar</span></a>
+    </aside>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/919810000000" target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+    </a>
+
+    <!-- Floating Book Appointment Pill -->
+    <a href="#contact" class="floating-book-pill">
+        <i class="fa-regular fa-calendar-check"></i> Book Appointment
+    </a>
+
+    <!-- 🔒 SECTION 1 — LOGIN / SIGNUP MODAL + PATIENT PORTAL -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-container">
+            <button class="modal-close" id="closeModalBtn"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header">
+                <button class="modal-tab active" data-target="loginTab">Login</button>
+                <button class="modal-tab" data-target="signupTab">Create Account</button>
+            </div>
+            <div class="modal-body">
+                <!-- Login Tab -->
+                <form id="loginTab" class="modal-form active" onsubmit="event.preventDefault(); handleLogin();">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required placeholder="Enter your password">
+                    </div>
+                    <div class="form-actions">
+                        <a href="#" class="forgot-link">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn-gold full-width">Login</button>
+                    <div class="divider"><span>OR</span></div>
+                    <button type="button" class="btn-outline full-width google-btn">
+                        <i class="fa-brands fa-google"></i> Continue with Google
+                    </button>
+                </form>
+                <!-- Signup Tab -->
+                <form id="signupTab" class="modal-form" onsubmit="event.preventDefault();">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email Address</label>
+                        <input type="email" id="signupEmail" required placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPhone">Phone Number</label>
+                        <input type="tel" id="signupPhone" required placeholder="+91 90000 00000">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" required placeholder="Create a password">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupConfirmPassword">Confirm Password</label>
+                        <input type="password" id="signupConfirmPassword" required placeholder="Confirm your password">
+                    </div>
+                    <button type="submit" class="btn-gold full-width">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Patient Dashboard Modal -->
+    <div class="modal-overlay" id="dashboardModal">
+        <div class="modal-container dashboard-container">
+            <button class="modal-close" id="closeDashboardBtn"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="section-title text-navy">My Appointments</h2>
+            <div class="table-responsive mt-2">
+                <table class="appointments-table">
+                    <thead>
+                        <tr>
+                            <th>Date & Time</th>
+                            <th>Clinic Name</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Oct 24, 2024 - 10:30 AM</td>
+                            <td>HeartCare Premier Clinic</td>
+                            <td><span class="status-badge confirmed">Confirmed</span></td>
+                            <td><button class="btn-cancel">Cancel</button></td>
+                        </tr>
+                        <tr>
+                            <td>Nov 12, 2024 - 02:00 PM</td>
+                            <td>Apollo Indraprastha Hospital</td>
+                            <td><span class="status-badge pending">Pending</span></td>
+                            <td><button class="btn-cancel">Cancel</button></td>
+                        </tr>
+                        <tr>
+                            <td>Sep 15, 2024 - 11:00 AM</td>
+                            <td>Max Super Speciality</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🏠 SECTION 2 — HERO / HOME -->
+    <section id="home" class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-content animate-on-scroll">
+                <div class="hero-badge"><i class="fa-solid fa-award"></i> Senior Cardiologist | 20+ Years Experience</div>
+                <h1 class="hero-title">Dr. Ayesha Sharma</h1>
+                <p class="hero-subtitle">Delivering world-class cardiovascular care through a unique blend of clinical expertise, cutting-edge research, and a deeply personalized approach to patient well-being.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-gold">Book Appointment</a>
+                    <a href="#about" class="btn-outline">View Profile</a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper animate-on-scroll">
+                <div class="hero-image">
+                    <!-- Placeholder for doctor photo -->
+                    <div class="image-placeholder"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats-bar">
+            <div class="container stats-container">
+                <div class="stat-item">
+                    <h3 class="stat-number" data-target="20">0</h3>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-number" data-target="10000" data-suffix="+">0</h3>
+                    <span class="stat-label">Patients Treated</span>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-number" data-target="30" data-suffix="+">0</h3>
+                    <span class="stat-label">Research Papers</span>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-number" data-target="5">0</h3>
+                    <span class="stat-label">Hospital Affiliations</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 👩⚕️ SECTION 3 — ABOUT / BIOGRAPHY -->
+    <section id="about" class="about-section bg-light">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image-wrapper animate-on-scroll">
+                    <div class="about-image-card main-portrait">
+                        <img src="ayesha_sharma.jpg" alt="Dr. Ayesha Sharma">
+                    </div>
+                    <div class="about-image-card secondary-action">
+                        <img src="surgery.png" alt="Dr. Sharma performing surgery">
+                        <div class="action-caption">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                            <span>In the Operating Room</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-content animate-on-scroll">
+                    <span class="section-label">About Dr. Sharma</span>
+                    <h2 class="section-title">A Life Dedicated to the Heart</h2>
+                    <div class="about-text">
+                        <p>With over two decades of dedicated medical practice, Dr. Ayesha Sharma has established herself as a leading figure in the field of interventional cardiology. Her journey began with a profound desire to make a tangible difference in people's lives, driving her to pursue rigorous medical training at some of the world's most prestigious institutions.</p>
+                        <p class="quote">"I believe every patient deserves both precision and compassion. Modern medicine provides us with incredible tools, but it is the human connection that truly heals."</p>
+                        <p>Beyond the operating room, Dr. Sharma is a passionate advocate for preventive cardiology and community health education. When she's not attending to patients or analyzing clinical research, she enjoys classical music, exploring historical literature, and mentoring the next generation of medical professionals.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Life Journey Timeline -->
+            <div class="timeline-horizontal animate-on-scroll mt-4">
+                <div class="timeline-item">
+                    <div class="timeline-year">2001</div>
+                    <div class="timeline-dot"></div>
+                    <h4 class="timeline-title">Medical School</h4>
+                    <p class="timeline-desc">Graduated from CMC Vellore with foundational honors.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2005</div>
+                    <div class="timeline-dot"></div>
+                    <h4 class="timeline-title">AIIMS Residency</h4>
+                    <p class="timeline-desc">Internal Medicine with a focus on acute cardiovascular care.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2008</div>
+                    <div class="timeline-dot"></div>
+                    <h4 class="timeline-title">Cleveland Clinic Fellowship</h4>
+                    <p class="timeline-desc">Advanced fellowship in Interventional Cardiology.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2012</div>
+                    <div class="timeline-dot"></div>
+                    <h4 class="timeline-title">Private Practice Founded</h4>
+                    <p class="timeline-desc">Established HeartCare Premier Clinic in New Delhi.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2020+</div>
+                    <div class="timeline-dot"></div>
+                    <h4 class="timeline-title">International Recognition</h4>
+                    <p class="timeline-desc">Awarded multiple accolades for excellence and innovation.</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-4 animate-on-scroll">
+                <a href="#" class="btn-gold"><i class="fa-solid fa-download"></i> Download Full CV</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🏆 SECTION 4 — ACHIEVEMENTS & AWARDS -->
+    <section id="achievements" class="achievements-section">
+        <div class="container">
+            <div class="section-header text-center animate-on-scroll">
+                <span class="section-label">Recognition & Excellence</span>
+                <h2 class="section-title">Achievements & Awards</h2>
+                <p class="section-subtitle">A curated gallery of international accolades, foundational research grants, and media features underscoring a commitment to advancing cardiovascular care.</p>
+            </div>
+
+            <div class="achievements-groups">
+                <!-- International Awards -->
+                <div class="achievement-group animate-on-scroll">
+                    <h3 class="group-title"><span class="badge-gold">International Awards</span></h3>
+                    <div class="cards-grid-2">
+                        <div class="award-card">
+                            <i class="fa-solid fa-globe icon-gold"></i>
+                            <span class="card-year">2022</span>
+                            <h4 class="card-title">Global Excellence in Cardiology</h4>
+                            <span class="card-source">World Heart Federation</span>
+                            <p class="card-desc">Recognized for pioneering minimally invasive techniques in structural heart disease, significantly reducing patient recovery times globally.</p>
+                        </div>
+                        <div class="award-card">
+                            <i class="fa-solid fa-medal icon-gold"></i>
+                            <span class="card-year">2021</span>
+                            <h4 class="card-title">Best Interventional Cardiologist — Asia</h4>
+                            <span class="card-source">Asia Pacific Cardiology Congress</span>
+                            <p class="card-desc">Awarded for outstanding clinical outcomes and contributions to regional cardiovascular protocols.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- National Recognition -->
+                <div class="achievement-group animate-on-scroll">
+                    <h3 class="group-title"><span class="badge-gold">National Recognition</span></h3>
+                    <div class="cards-grid-2">
+                        <div class="award-card">
+                            <i class="fa-solid fa-user-doctor icon-gold"></i>
+                            <span class="card-year">2020</span>
+                            <h4 class="card-title">Top Physician Innovator</h4>
+                            <span class="card-source">National Medical Council</span>
+                            <p class="card-desc">Honored for introducing novel digital health monitoring systems in post-operative cardiac care.</p>
+                        </div>
+                        <div class="award-card">
+                            <i class="fa-solid fa-hand-holding-heart icon-gold"></i>
+                            <span class="card-year">2019</span>
+                            <h4 class="card-title">Excellence in Patient Care</h4>
+                            <span class="card-source">Indian Medical Association</span>
+                            <p class="card-desc">Recognized for maintaining the highest standards of patient safety and compassionate clinical practice.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Grants -->
+                <div class="achievement-group animate-on-scroll">
+                    <h3 class="group-title"><span class="badge-gold">Research Grants</span></h3>
+                    <div class="cards-grid-2">
+                        <div class="award-card">
+                            <i class="fa-solid fa-flask icon-gold"></i>
+                            <span class="card-year">2021–2024</span>
+                            <h4 class="card-title">Advanced Therapeutics Fund</h4>
+                            <span class="card-source">Institute of Health</span>
+                            <p class="card-desc">Principal Investigator for a multi-million dollar grant studying long-term efficacy of novel bio-absorbable stents.</p>
+                        </div>
+                        <div class="award-card">
+                            <i class="fa-solid fa-heart-pulse icon-gold"></i>
+                            <span class="card-year">2019</span>
+                            <h4 class="card-title">Cardiovascular Prevention Grant</h4>
+                            <span class="card-source">WHO South-East Asia</span>
+                            <p class="card-desc">Funding to establish community-based screening programs for early detection of coronary artery disease.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Media Features -->
+                <div class="achievement-group animate-on-scroll">
+                    <h3 class="group-title"><span class="badge-gold">Media Features</span></h3>
+                    <div class="cards-grid-3">
+                        <div class="award-card">
+                            <i class="fa-regular fa-newspaper icon-gold"></i>
+                            <span class="card-year">2023</span>
+                            <h4 class="card-title">India's Top 10 Doctors</h4>
+                            <span class="card-source">Times of India Magazine Cover</span>
+                            <p class="card-desc">Featured as a leading voice in modern healthcare innovation and clinical excellence.</p>
+                        </div>
+                        <div class="award-card">
+                            <i class="fa-solid fa-tv icon-gold"></i>
+                            <span class="card-year">2022</span>
+                            <h4 class="card-title">The Future of Heart Care</h4>
+                            <span class="card-source">NDTV Health Special Interview</span>
+                            <p class="card-desc">A deep dive into the integration of AI and robotics in cardiovascular surgery.</p>
+                        </div>
+                        <div class="award-card">
+                            <i class="fa-solid fa-microphone icon-gold"></i>
+                            <span class="card-year">2021</span>
+                            <h4 class="card-title">Rethinking Cardiac Prevention</h4>
+                            <span class="card-source">TEDx Talk</span>
+                            <p class="card-desc">An inspiring presentation on lifestyle modifications and preventive strategies for heart health.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🎓 SECTION 5 — EDUCATION & QUALIFICATIONS -->
+    <section id="education" class="education-section bg-light">
+        <div class="container">
+            <div class="section-header text-center animate-on-scroll">
+                <h2 class="section-title">Education & Qualifications</h2>
+                <p class="section-subtitle">A foundation of rigorous academic training and specialized clinical fellowships.</p>
+            </div>
+
+            <div class="education-grid">
+                <!-- Academic Timeline -->
+                <div class="academic-timeline animate-on-scroll">
+                    <div class="timeline-vertical-item">
+                        <div class="timeline-v-dot"></div>
+                        <div class="edu-content">
+                            <div class="edu-header">
+                                <h4 class="edu-degree">Advanced Fellowship in Interventional Cardiology</h4>
+                                <span class="edu-year">2006–2008</span>
+                            </div>
+                            <h5 class="edu-inst">Cleveland Clinic, USA 🇺🇸</h5>
+                            <p class="edu-desc">Specialized training in complex coronary interventions, structural heart disease, and advanced hemodynamic support devices. Participated in multiple high-profile clinical trials.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-vertical-item">
+                        <div class="timeline-v-dot"></div>
+                        <div class="edu-content">
+                            <div class="edu-header">
+                                <h4 class="edu-degree">MD in Internal Medicine</h4>
+                                <span class="edu-year">2002–2005</span>
+                            </div>
+                            <h5 class="edu-inst">AIIMS New Delhi 🇮🇳</h5>
+                            <p class="edu-desc">Comprehensive residency with focus on acute cardiovascular care. Graduated with Honors.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-vertical-item">
+                        <div class="timeline-v-dot"></div>
+                        <div class="edu-content">
+                            <div class="edu-header">
+                                <h4 class="edu-degree">MBBS</h4>
+                                <span class="edu-year">1996–2001</span>
+                            </div>
+                            <h5 class="edu-inst">Christian Medical College, Vellore 🇮🇳</h5>
+                            <p class="edu-desc">Foundational medical education with extensive clinical exposure in a high-volume tertiary care setting.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-vertical-item">
+                        <div class="timeline-v-dot"></div>
+                        <div class="edu-content">
+                            <div class="edu-header">
+                                <h4 class="edu-degree">Certification</h4>
+                                <span class="edu-year">2010</span>
+                            </div>
+                            <h5 class="edu-inst">European Society of Cardiology</h5>
+                        </div>
+                    </div>
+                    <div class="timeline-vertical-item">
+                        <div class="timeline-v-dot"></div>
+                        <div class="edu-content">
+                            <div class="edu-header">
+                                <h4 class="edu-degree">Board Certification</h4>
+                                <span class="edu-year">2009</span>
+                            </div>
+                            <h5 class="edu-inst">American College of Cardiology</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills & Specializations -->
+                <div class="skills-grid animate-on-scroll">
+                    <h3 class="skills-title">Specializations & Expertise</h3>
+                    <div class="skills-wrapper">
+                        <div class="skill-tile"><i class="fa-solid fa-heart-circle-check"></i> Interventional Cardiology</div>
+                        <div class="skill-tile"><i class="fa-solid fa-lungs"></i> Structural Heart Disease</div>
+                        <div class="skill-tile"><i class="fa-solid fa-robot"></i> Robotic-Assisted Surgery</div>
+                        <div class="skill-tile"><i class="fa-solid fa-wave-square"></i> Cardiac Imaging & Echo</div>
+                        <div class="skill-tile"><i class="fa-solid fa-shield-heart"></i> Preventive Cardiology</div>
+                        <div class="skill-tile"><i class="fa-solid fa-heart-crack"></i> Heart Failure Management</div>
+                        <div class="skill-tile"><i class="fa-solid fa-bolt"></i> Electrophysiology</div>
+                        <div class="skill-tile"><i class="fa-solid fa-child"></i> Pediatric Cardiology</div>
+                        <div class="skill-tile"><i class="fa-solid fa-microscope"></i> Clinical Research</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🔬 SECTION 6 — RESEARCH & PUBLICATIONS -->
+    <section id="research" class="research-section">
+        <div class="container">
+            <!-- Featured Publication -->
+            <div class="featured-pub animate-on-scroll">
+                <div class="featured-pub-content">
+                    <span class="badge-gold">Featured Publication</span>
+                    <h2 class="featured-title">Long-Term Efficacy of Novel Anticoagulants in High-Risk Structural Heart Disease</h2>
+                    <p class="featured-desc">"A comprehensive 5-year longitudinal study evaluating safety profiles and thromboembolic prevention rates of next-generation DOACs."</p>
+                    <div class="featured-meta">
+                        <p><strong>Published:</strong> The New England Journal of Medicine — October 2023</p>
+                        <p><strong>DOI:</strong> 10.1056/NEJMoa2301452</p>
+                        <p><strong>Co-Authors:</strong> Ayesha Sharma, David R. Patel, Emma L. Chen</p>
+                    </div>
+                    <a href="research-anticoagulants.html" class="btn-gold mt-2">Read Paper →</a>
+                </div>
+            </div>
+
+            <!-- Publications Filter -->
+            <div class="filter-tabs animate-on-scroll mt-4">
+                <button class="filter-btn active">All Publications</button>
+                <button class="filter-btn">Clinical Trials</button>
+                <button class="filter-btn">Cardiovascular Imaging</button>
+                <button class="filter-btn">Preventive Cardiology</button>
+                <button class="filter-btn">Reviews & Editorials</button>
+            </div>
+
+            <!-- Publications Grid -->
+            <div class="cards-grid-3 mt-3 animate-on-scroll">
+                <div class="pub-card">
+                    <span class="pub-badge">Clinical Trials</span>
+                    <h4 class="pub-title">Machine Learning Applications in Early Detection of Myocardial Infarction</h4>
+                    <p class="pub-journal">Journal of the American College of Cardiology — 2023</p>
+                    <p class="pub-authors">Co-authors: A. Sharma, R. Kumar</p>
+                    <a href="research-ml-cardiology.html" class="pub-link">Read Paper →</a>
+                </div>
+                <div class="pub-card">
+                    <span class="pub-badge">Cardiovascular Imaging</span>
+                    <h4 class="pub-title">Bioresorbable Scaffold Outcomes at 5 Years</h4>
+                    <p class="pub-journal">Circulation — 2022</p>
+                    <p class="pub-authors">Co-authors: A. Sharma, T. Singh</p>
+                    <a href="research-bioresorbable.html" class="pub-link">Read Paper →</a>
+                </div>
+                <div class="pub-card">
+                    <span class="pub-badge">Reviews & Editorials</span>
+                    <h4 class="pub-title">Gender Disparities in Cardiac Care Delivery</h4>
+                    <p class="pub-journal">The Lancet — 2022</p>
+                    <p class="pub-authors">Co-authors: A. Sharma, M. Gupta</p>
+                    <a href="research-gender-disparities.html" class="pub-link">Read Paper →</a>
+                </div>
+                <div class="pub-card">
+                    <span class="pub-badge">Clinical Trials</span>
+                    <h4 class="pub-title">Remote Patient Monitoring in Post-Bypass Recovery</h4>
+                    <p class="pub-journal">JACC: Digital Health — 2021</p>
+                    <p class="pub-authors">Co-authors: A. Sharma, D. Patel</p>
+                    <a href="research-remote-monitoring.html" class="pub-link">Read Paper →</a>
+                </div>
+                <div class="pub-card">
+                    <span class="pub-badge">Cardiovascular Imaging</span>
+                    <h4 class="pub-title">Stress Echocardiography vs CT Angiography</h4>
+                    <p class="pub-journal">European Heart Journal — 2020</p>
+                    <p class="pub-authors">Co-authors: A. Sharma, S. Lee</p>
+                    <a href="research-stress-echo.html" class="pub-link">Read Paper →</a>
+                </div>
+                <div class="pub-card">
+                    <span class="pub-badge">Preventive Cardiology</span>
+                    <h4 class="pub-title">Statin Therapy in South Asian Populations</h4>
+                    <p class="pub-journal">BMJ — 2019</p>
+                    <p class="pub-authors">Co-authors: A. Sharma, V. Krishnan</p>
+                    <a href="research-statin-therapy.html" class="pub-link">Read Paper →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🏥 SECTION 7 — CLINICS & HOSPITAL AFFILIATIONS -->
+    <section id="clinics" class="clinics-section bg-light">
+        <div class="container">
+            <div class="section-header text-center animate-on-scroll">
+                <h2 class="section-title">Clinics & Affiliations</h2>
+                <p class="section-subtitle">Dr. Sharma consults at premier medical facilities across the city. Select a location to view hours and arrange your consultation.</p>
+            </div>
+
+            <div class="cards-grid-3 animate-on-scroll">
+                <!-- Clinic 1 -->
+                <div class="clinic-card">
+                    <div class="clinic-header">
+                        <h4 class="clinic-name">HeartCare Premier Clinic</h4>
+                        <span class="clinic-badge private">Private Practice</span>
+                    </div>
+                    <div class="clinic-body">
+                        <p class="clinic-detail"><i class="fa-solid fa-location-dot"></i> Connaught Place, New Delhi</p>
+                        <p class="clinic-detail"><i class="fa-regular fa-clock"></i> Mon, Wed, Fri 9AM–1PM</p>
+                        <p class="clinic-detail"><i class="fa-solid fa-phone"></i> +91 11 4567 8900</p>
+                    </div>
+                    <div class="clinic-footer">
+                        <a href="#contact" class="btn-gold full-width text-center">Book at this Location</a>
+                        <a href="#" class="btn-outline full-width text-center mt-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> Get Directions</a>
+                    </div>
+                </div>
+
+                <!-- Clinic 2 -->
+                <div class="clinic-card">
+                    <div class="clinic-header">
+                        <h4 class="clinic-name">Apollo Indraprastha Hospital</h4>
+                        <span class="clinic-badge hospital">Hospital Affiliation</span>
+                    </div>
+                    <div class="clinic-body">
+                        <p class="clinic-detail"><i class="fa-solid fa-user-tie"></i> Senior Consultant</p>
+                        <p class="clinic-detail"><i class="fa-solid fa-location-dot"></i> Sarita Vihar, New Delhi</p>
+                        <p class="clinic-detail"><i class="fa-regular fa-clock"></i> Tue, Thu 10AM–4PM</p>
+                        <p class="clinic-detail"><i class="fa-solid fa-phone"></i> +91 11 2692 5858</p>
+                    </div>
+                    <div class="clinic-footer">
+                        <a href="#contact" class="btn-gold full-width text-center">Book at this Location</a>
+                        <a href="#" class="btn-outline full-width text-center mt-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> Get Directions</a>
+                    </div>
+                </div>
+
+                <!-- Clinic 3 -->
+                <div class="clinic-card">
+                    <div class="clinic-header">
+                        <h4 class="clinic-name">Max Super Speciality</h4>
+                        <span class="clinic-badge hospital">Hospital Affiliation</span>
+                    </div>
+                    <div class="clinic-body">
+                        <p class="clinic-detail"><i class="fa-solid fa-user-tie"></i> Visiting Consultant</p>
+                        <p class="clinic-detail"><i class="fa-solid fa-location-dot"></i> Saket, New Delhi</p>
+                        <p class="clinic-detail"><i class="fa-regular fa-clock"></i> Saturday 9AM–12PM</p>
+                        <p class="clinic-detail"><i class="fa-solid fa-phone"></i> +91 11 2651 5050</p>
+                    </div>
+                    <div class="clinic-footer">
+                        <a href="#contact" class="btn-gold full-width text-center">Book at this Location</a>
+                        <a href="#" class="btn-outline full-width text-center mt-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> Get Directions</a>
+                    </div>
+                </div>
+
+                <!-- Clinic 4 -->
+                <div class="clinic-card">
+                    <div class="clinic-header">
+                        <h4 class="clinic-name">Fortis Escorts Heart Institute</h4>
+                        <span class="clinic-badge hospital">Hospital Affiliation</span>
+                    </div>
+                    <div class="clinic-body">
+                        <p class="clinic-detail"><i class="fa-solid fa-user-tie"></i> Senior Consultant</p>
+                        <p class="clinic-detail"><i class="fa-solid fa-location-dot"></i> Okhla, New Delhi</p>
+                        <p class="clinic-detail"><i class="fa-regular fa-clock"></i> Mon, Thu 2PM–6PM</p>
+                        <p class="clinic-detail"><i class="fa-solid fa-phone"></i> +91 11 4713 5000</p>
+                    </div>
+                    <div class="clinic-footer">
+                        <a href="#contact" class="btn-gold full-width text-center">Book at this Location</a>
+                        <a href="#" class="btn-outline full-width text-center mt-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> Get Directions</a>
+                    </div>
+                </div>
+
+                <!-- Clinic 5 -->
+                <div class="clinic-card">
+                    <div class="clinic-header">
+                        <h4 class="clinic-name">AIIMS Cardiology OPD</h4>
+                        <span class="clinic-badge teaching">Teaching Hospital</span>
+                    </div>
+                    <div class="clinic-body">
+                        <p class="clinic-detail"><i class="fa-solid fa-user-tie"></i> Academic Affiliation</p>
+                        <p class="clinic-detail"><i class="fa-solid fa-location-dot"></i> Ansari Nagar, New Delhi</p>
+                        <p class="clinic-detail"><i class="fa-regular fa-clock"></i> Friday 8AM–11AM</p>
+                        <p class="clinic-detail"><i class="fa-solid fa-phone"></i> +91 11 2658 8500</p>
+                    </div>
+                    <div class="clinic-footer">
+                        <a href="#contact" class="btn-gold full-width text-center">Book at this Location</a>
+                        <a href="#" class="btn-outline full-width text-center mt-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> Get Directions</a>
+                    </div>
+                </div>
+
+                <!-- Clinic 6 -->
+                <div class="clinic-card">
+                    <div class="clinic-header">
+                        <h4 class="clinic-name">Cleveland Clinic India Partner</h4>
+                        <span class="clinic-badge hospital">Visiting</span>
+                    </div>
+                    <div class="clinic-body">
+                        <p class="clinic-detail"><i class="fa-solid fa-user-tie"></i> Visiting Consultant</p>
+                        <p class="clinic-detail"><i class="fa-solid fa-location-dot"></i> Mumbai, Maharashtra</p>
+                        <p class="clinic-detail"><i class="fa-regular fa-clock"></i> Quarterly visits</p>
+                        <p class="clinic-detail"><i class="fa-solid fa-phone"></i> +91 22 6123 4567</p>
+                    </div>
+                    <div class="clinic-footer">
+                        <a href="#contact" class="btn-gold full-width text-center">Book at this Location</a>
+                        <a href="#" class="btn-outline full-width text-center mt-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> Get Directions</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Placeholder -->
+            <div class="map-container animate-on-scroll mt-4">
+                <div class="map-placeholder">
+                    <p>View All Locations on Map</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⭐ SECTION 8 — PATIENT REVIEWS & TESTIMONIALS -->
+    <section id="reviews" class="reviews-section">
+        <div class="container">
+            <!-- Rating Summary -->
+            <div class="rating-banner animate-on-scroll">
+                <div class="rating-score">
+                    <h2 class="score-number">4.9 <span class="score-max">/ 5</span></h2>
+                    <div class="score-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="score-text">Based on 2,400+ verified patient reviews</p>
+                </div>
+                <div class="rating-bars">
+                    <div class="bar-row">
+                        <span class="bar-label">Excellent</span>
+                        <div class="bar-track"><div class="bar-fill" style="width: 92%;"></div></div>
+                        <span class="bar-percent">92%</span>
+                    </div>
+                    <div class="bar-row">
+                        <span class="bar-label">Good</span>
+                        <div class="bar-track"><div class="bar-fill" style="width: 6%;"></div></div>
+                        <span class="bar-percent">6%</span>
+                    </div>
+                    <div class="bar-row">
+                        <span class="bar-label">Average</span>
+                        <div class="bar-track"><div class="bar-fill" style="width: 2%;"></div></div>
+                        <span class="bar-percent">2%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews Masonry -->
+            <div class="reviews-masonry animate-on-scroll mt-4">
+                <div class="review-card">
+                    <div class="review-header">
+                        <h4 class="review-name">Rajesh Mehta</h4>
+                        <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    </div>
+                    <span class="review-condition">Aortic Stenosis</span>
+                    <p class="review-text">"Dr. Sharma's approach to my complex condition was both reassuring and highly professional. She explained every detail of the procedure in a way that put me at ease. The recovery has been incredible, and I owe my renewed health to her expertise."</p>
+                    <span class="review-date">October 12, 2023</span>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <h4 class="review-name">Priya Nair</h4>
+                        <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    </div>
+                    <span class="review-condition">Arrhythmia</span>
+                    <p class="review-text">"Finding a specialist who genuinely listens is rare. Dr. Sharma took the time to understand my symptoms before suggesting a treatment plan. Highly recommended for anyone needing serious cardiac care."</p>
+                    <span class="review-date">September 28, 2023</span>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <h4 class="review-name">Sunita Kapoor</h4>
+                        <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    </div>
+                    <span class="review-condition">Hypertrophic Cardiomyopathy</span>
+                    <p class="review-text">"Exceptional care from start to finish. The clinic environment is incredibly serene, making stressful visits much easier to handle."</p>
+                    <span class="review-date">August 15, 2023</span>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <h4 class="review-name">Amit Verma</h4>
+                        <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    </div>
+                    <span class="review-condition">Post-Bypass Recovery</span>
+                    <p class="review-text">"After years of struggling with unexplained fatigue, Dr. Sharma finally provided a clear diagnosis. Her empathetic nature and academic rigor give you total confidence."</p>
+                    <span class="review-date">July 02, 2023</span>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <h4 class="review-name">Fatima Al-Hassan</h4>
+                        <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    </div>
+                    <span class="review-condition">Valvular Disease</span>
+                    <p class="review-text">"I flew in from Dubai specifically for Dr. Sharma's expertise. Worth every mile. She is truly world-class."</p>
+                    <span class="review-date">June 19, 2023</span>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <h4 class="review-name">Karan Singh</h4>
+                        <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    </div>
+                    <span class="review-condition">Preventive Cardiology</span>
+                    <p class="review-text">"Even as a healthy patient seeking a cardiac check-up, the thoroughness of the assessment was remarkable. Her team is equally impressive."</p>
+                    <span class="review-date">May 10, 2023</span>
+                </div>
+            </div>
+
+            <!-- Feedback Form -->
+            <div class="feedback-form-container animate-on-scroll mt-4">
+                <h3 class="feedback-title text-center">Share Your Experience</h3>
+                <form class="feedback-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="Your email">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Condition Treated</label>
+                            <input type="text" placeholder="e.g. Arrhythmia">
+                        </div>
+                        <div class="form-group">
+                            <label>Rating</label>
+                            <div class="star-selector">
+                                <i class="fa-regular fa-star" data-val="1"></i>
+                                <i class="fa-regular fa-star" data-val="2"></i>
+                                <i class="fa-regular fa-star" data-val="3"></i>
+                                <i class="fa-regular fa-star" data-val="4"></i>
+                                <i class="fa-regular fa-star" data-val="5"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea rows="4" placeholder="Share your experience..."></textarea>
+                    </div>
+                    <div class="text-center mt-2">
+                        <button type="button" class="btn-gold">Submit Feedback</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 📺 SECTION 9 — MEDIA & PRESS -->
+    <section id="media" class="media-section bg-light">
+        <div class="container">
+            <div class="section-header text-center animate-on-scroll">
+                <h2 class="section-title">Media & Press</h2>
+                <p class="section-subtitle">Insights, interviews, and clinical perspectives from Dr. Ayesha Sharma across global medical forums and tier-one publications.</p>
+            </div>
+
+            <div class="filter-tabs animate-on-scroll">
+                <button class="filter-btn active">All Coverage</button>
+                <button class="filter-btn">Videos</button>
+                <button class="filter-btn">Articles</button>
+                <button class="filter-btn">Podcasts</button>
+                <button class="filter-btn">Interviews</button>
+            </div>
+
+            <!-- Videos Row -->
+            <div class="media-row videos-row animate-on-scroll mt-3">
+                <div class="video-card">
+                    <div class="video-thumb">
+                        <i class="fa-solid fa-play play-icon"></i>
+                    </div>
+                    <h4 class="media-title">The Future of Non-Invasive Cardiology — Global Health Summit 2024</h4>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumb">
+                        <i class="fa-solid fa-play play-icon"></i>
+                    </div>
+                    <h4 class="media-title">Rethinking Cardiac Prevention — TEDx Talk 2021</h4>
+                </div>
+            </div>
+
+            <!-- Articles Row -->
+            <div class="media-row articles-row animate-on-scroll mt-3">
+                <div class="article-card">
+                    <div class="article-thumb"></div>
+                    <div class="article-content">
+                        <span class="article-date">2023</span>
+                        <h4 class="media-title">Times of India — India's Top 10 Doctors 2023</h4>
+                        <a href="#" class="media-link">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-thumb"></div>
+                    <div class="article-content">
+                        <span class="article-date">Sep 2023</span>
+                        <h4 class="media-title">The Telegraph — Women Breaking Barriers in Surgical Cardiology</h4>
+                        <a href="#" class="media-link">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-thumb"></div>
+                    <div class="article-content">
+                        <span class="article-date">Oct 2023</span>
+                        <h4 class="media-title">International Journal of Cardiology — Advancements in Stent Technology</h4>
+                        <a href="#" class="media-link">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Podcasts Row -->
+            <div class="media-row podcasts-row animate-on-scroll mt-3">
+                <div class="podcast-card">
+                    <div class="podcast-icon"><i class="fa-solid fa-headphones"></i></div>
+                    <div class="podcast-content">
+                        <span class="podcast-meta">Heart Matters • 42 min</span>
+                        <h4 class="media-title">Navigating Stress and Cardiovascular Health</h4>
+                    </div>
+                    <button class="podcast-play"><i class="fa-solid fa-circle-play"></i></button>
+                </div>
+                <div class="podcast-card">
+                    <div class="podcast-icon"><i class="fa-solid fa-headphones"></i></div>
+                    <div class="podcast-content">
+                        <span class="podcast-meta">The Medical Mindset Podcast • 58 min</span>
+                        <h4 class="media-title">Precision Medicine in Cardiology</h4>
+                    </div>
+                    <button class="podcast-play"><i class="fa-solid fa-circle-play"></i></button>
+                </div>
+            </div>
+
+            <!-- Media Enquiries -->
+            <div class="media-enquiries text-center animate-on-scroll mt-4">
+                <p><strong>For Media Enquiries:</strong> <a href="mailto:media@drsharma.com">media@drsharma.com</a> | <a href="tel:+919810000000">+91 98100 00000</a></p>
+                <a href="#" class="btn-outline mt-1">Download Press Kit</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 📅 SECTION 10 — CONTACT & BOOK APPOINTMENT -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Booking Form -->
+                <div class="contact-form-wrapper animate-on-scroll">
+                    <h2 class="section-title">Book an Appointment</h2>
+                    <p class="form-subtitle">Fill out the form below and our team will get back to you to confirm your appointment.</p>
+                    <form class="booking-form">
+                        <div class="form-group">
+                            <label>Patient Full Name</label>
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" placeholder="+91" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" placeholder="your@email.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Select Preferred Clinic</label>
+                            <div class="custom-select-wrapper">
+                                <select required class="custom-select">
+                                    <option value="" disabled selected>Select a location</option>
+                                    <option value="1">HeartCare Premier Clinic (Connaught Place)</option>
+                                    <option value="2">Apollo Indraprastha Hospital (Sarita Vihar)</option>
+                                    <option value="3">Max Super Speciality (Saket)</option>
+                                    <option value="4">Fortis Escorts Heart Institute (Okhla)</option>
+                                    <option value="5">AIIMS Cardiology OPD (Ansari Nagar)</option>
+                                    <option value="6">Cleveland Clinic India Partner (Mumbai)</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label>Preferred Date</label>
+                                <input type="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Preferred Time Slot</label>
+                                <div class="custom-select-wrapper">
+                                    <select required class="custom-select">
+                                        <option value="" disabled selected>Select time</option>
+                                        <option value="morning">Morning 9:00 AM – 12:00 PM</option>
+                                        <option value="afternoon">Afternoon 12:00 PM – 4:00 PM</option>
+                                        <option value="evening">Evening 4:00 PM – 7:00 PM</option>
+                                    </select>
+                                    <i class="fa-solid fa-chevron-down select-icon"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Reason for Visit</label>
+                            <textarea rows="4" placeholder="Briefly describe your symptoms or reason for visit"></textarea>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="privacyAgree" required>
+                            <label for="privacyAgree">I agree to the privacy policy and terms of service.</label>
+                        </div>
+                        <button type="submit" class="btn-gold full-width">Request Appointment →</button>
+                    </form>
+                </div>
+
+                <!-- Contact Info Panel -->
+                <div class="contact-info-panel animate-on-scroll">
+                    <h3 class="panel-title">Contact Information</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <div>
+                                <strong>Phone</strong>
+                                <p>+91 98100 00000</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-brands fa-whatsapp text-green"></i>
+                            <div>
+                                <strong>WhatsApp</strong>
+                                <p>+91 98100 00000</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <p>care@drsharma.com</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-truck-medical text-red"></i>
+                            <div>
+                                <strong>Emergency</strong>
+                                <p>+91 11 4567 8911</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div>
+                                <strong>Primary Office</strong>
+                                <p>HeartCare Premier Clinic<br>12 Connaught Place, New Delhi 110001</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-clock"></i>
+                            <div>
+                                <strong>Office Hours</strong>
+                                <p>Monday–Saturday 9:00 AM – 6:00 PM</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="map-embed-small mt-3">
+                        <div class="map-placeholder small">
+                            <p>Map View</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🔻 FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Col 1 -->
+                <div class="footer-col">
+                    <h3 class="footer-brand">Dr. Ayesha Sharma</h3>
+                    <p class="footer-tagline">Delivering world-class cardiovascular care through a unique blend of clinical expertise, cutting-edge research, and a deeply personalized approach to patient well-being.</p>
+                    <div class="footer-socials mt-2">
+                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#"><i class="fa-solid fa-graduation-cap"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Col 2 -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#achievements">Achievements & Awards</a></li>
+                        <li><a href="#education">Education & Qualifications</a></li>
+                        <li><a href="#research">Research & Publications</a></li>
+                        <li><a href="#clinics">Clinics & Affiliations</a></li>
+                        <li><a href="#reviews">Patient Reviews</a></li>
+                        <li><a href="#media">Media & Press</a></li>
+                        <li><a href="#contact">Contact & Booking</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3 -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Clinic Locations</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">HeartCare Premier Clinic</a></li>
+                        <li><a href="#">Apollo Indraprastha Hospital</a></li>
+                        <li><a href="#">Max Super Speciality</a></li>
+                        <li><a href="#">Fortis Escorts Heart Institute</a></li>
+                        <li><a href="#">AIIMS Cardiology OPD</a></li>
+                        <li><a href="#">Cleveland Clinic Partner</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4 -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Newsletter</h4>
+                    <p class="footer-newsletter-text">Subscribe to receive updates on cardiovascular health and prevention tips.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email Address" required>
+                        <button type="submit" class="btn-gold">Subscribe</button>
+                    </form>
+                    <div class="cert-logos mt-3">
+                        <div class="cert-logo-placeholder">AIIMS</div>
+                        <div class="cert-logo-placeholder">Cleveland</div>
+                        <div class="cert-logo-placeholder">Apollo</div>
+                        <div class="cert-logo-placeholder">Max</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Dr. Ayesha Sharma. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="login.html" id="footerPatientPortalBtn">Patient Portal</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-notification" id="toast">
+        <i class="fa-solid fa-circle-check" id="toastIcon" style="color: var(--secondary); font-size: 1.2rem;"></i>
+        <div id="toastMessage">Toast message goes here.</div>
+        <i class="fa-solid fa-xmark toast-close" onclick="hideToast()"></i>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>

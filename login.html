@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Portal — Dr. Ayesha Sharma</title>
+    <meta name="description" content="Access your personalized cardiovascular health dashboard and appointments.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS (compiled with login specific additions) -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Dedicated Login Page styling for high-end visual aesthetics */
+        body.login-page-body {
+            background: radial-gradient(circle at center, #112240 0%, #0A1628 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.login-page-body::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, rgba(201, 168, 76, 0) 70%);
+            top: -200px;
+            right: -200px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        body.login-page-body::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.04) 0%, rgba(16, 185, 129, 0) 70%);
+            bottom: -200px;
+            left: -200px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .login-card {
+            background: rgba(10, 22, 40, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 500px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), var(--shadow-gold);
+            z-index: 10;
+            color: var(--white);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .login-header-logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header-logo h2 {
+            font-family: var(--font-heading);
+            color: var(--secondary);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .login-header-logo p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .login-tab-container {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .login-tab-btn {
+            flex: 1;
+            padding: 0.75rem;
+            font-weight: 600;
+            color: #94a3b8;
+            border-bottom: 2px solid transparent;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .login-tab-btn.active {
+            color: var(--secondary);
+            border-bottom-color: var(--secondary);
+            text-shadow: 0 0 10px rgba(201, 168, 76, 0.3);
+        }
+
+        .login-page-form {
+            display: none;
+        }
+
+        .login-page-form.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-card .form-group label {
+            color: #e2e8f0;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .login-card input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border-radius: 6px;
+            padding: 0.85rem;
+            font-size: 1rem;
+        }
+
+        .login-card input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.25);
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .input-with-icon i:hover {
+            color: var(--secondary);
+        }
+
+        /* OTP Input Blocks styling */
+        .otp-inputs-wrapper {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+
+        .otp-digit-input {
+            width: 48px;
+            height: 54px;
+            font-size: 1.5rem !important;
+            font-weight: 700;
+            text-align: center;
+            border-radius: 8px !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        }
+
+        /* Countdown display */
+        .cooldown-text {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .cooldown-text span {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* Toast notification */
+        .toast-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(10, 22, 40, 0.95);
+            border-left: 4px solid var(--secondary);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 400px;
+        }
+
+        .toast-notification.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-notification.success {
+            border-left-color: var(--success);
+        }
+
+        .toast-notification.error {
+            border-left-color: var(--danger);
+        }
+
+        .toast-notification .toast-close {
+            margin-left: auto;
+            color: #cbd5e1;
+            cursor: pointer;
+        }
+
+        .back-to-home {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: #cbd5e1;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 100;
+            font-size: 0.95rem;
+        }
+
+        .back-to-home:hover {
+            color: var(--secondary);
+            transform: translateX(-3px);
+        }
+
+        .btn-gold.full-width {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2.5px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: var(--white);
+            animation: spin 0.8s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mock OTP popup warning */
+        .mock-otp-popup {
+            background: rgba(201, 168, 76, 0.15);
+            border: 1px dashed var(--secondary);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .mock-otp-popup i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+
+        .mock-otp-code {
+            font-family: monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            background: rgba(0,0,0,0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body class="login-page-body">
+
+    <!-- Back to Main Site -->
+    <a href="index.html" class="back-to-home">
+        <i class="fa-solid fa-arrow-left"></i> Back to website
+    </a>
+
+    <div class="login-card">
+        <div class="login-header-logo">
+            <h2>Dr. Ayesha Sharma</h2>
+            <p>Patient Portal Login</p>
+        </div>
+
+        <div class="login-tab-container">
+            <button class="login-tab-btn active" onclick="switchLoginTab('otpLoginTab')">Email OTP</button>
+            <button class="login-tab-btn" onclick="switchLoginTab('passwordLoginTab')">Email & Password</button>
+        </div>
+
+        <!-- 📧 MOCK OTP DISPLAY POPUP (Appears during developer testing fallback) -->
+        <div class="mock-otp-popup" id="mockOtpPopup">
+            <i class="fa-solid fa-circle-info"></i>
+            <div>
+                <span>Development Mode: Your verification OTP is:</span>
+                <span class="mock-otp-code" id="mockOtpCode">000000</span>
+            </div>
+        </div>
+
+        <!-- 🔑 OTP Login Form -->
+        <div id="otpLoginTab" class="login-page-form active">
+            <!-- Step 1: Send OTP -->
+            <form id="sendOtpForm" onsubmit="event.preventDefault(); handleSendOTP();">
+                <div class="form-group">
+                    <label for="otpEmail">Email Address</label>
+                    <input type="email" id="otpEmail" required placeholder="Enter your email registered with clinic">
+                </div>
+                <button type="submit" class="btn-gold full-width" id="sendOtpBtn">
+                    <span>Send Login OTP</span>
+                    <div class="spinner" id="sendOtpSpinner"></div>
+                </button>
+            </form>
+
+            <!-- Step 2: Verify OTP (Hidden initially) -->
+            <form id="verifyOtpForm" style="display: none;" onsubmit="event.preventDefault(); handleVerifyOTP();">
+                <div class="form-group" style="margin-bottom: 0.5rem;">
+                    <label style="text-align: center; display: block;">Enter 6-Digit OTP</label>
+                    <p style="text-align: center; font-size: 0.85rem; color: #cbd5e1; margin-bottom: 1.5rem;" id="otpInstructionsText">
+                        We sent a code to email
+                    </p>
+                    
+                    <div class="otp-inputs-wrapper">
+                        <input type="text" class="otp-digit-input" maxlength="1" pattern="[0-9]" inputmode="numeric" required>
+                        <input type="text" class="otp-digit-input" maxlength="1" pattern="[0-9]" inputmode="numeric" required disabled>
+                        <input type="text" class="otp-digit-input" maxlength="1" pattern="[0-9]" inputmode="numeric" required disabled>
+                        <input type="text" class="otp-digit-input" maxlength="1" pattern="[0-9]" inputmode="numeric" required disabled>
+                        <input type="text" class="otp-digit-input" maxlength="1" pattern="[0-9]" inputmode="numeric" required disabled>
+                        <input type="text" class="otp-digit-input" maxlength="1" pattern="[0-9]" inputmode="numeric" required disabled>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-gold full-width" id="verifyOtpBtn">
+                    <span>Verify & Login</span>
+                    <div class="spinner" id="verifyOtpSpinner"></div>
+                </button>
+
+                <div class="cooldown-text" id="cooldownTextWrapper" style="display: none;">
+                    Resend code in <span id="cooldownSeconds">60</span> seconds
+                </div>
+                
+                <button type="button" class="btn-outline full-width" id="resendOtpBtn" style="display: none; margin-top: 1rem; border-color: rgba(255,255,255,0.2); color: white;" onclick="handleSendOTP();">
+                    Resend OTP
+                </button>
+            </form>
+        </div>
+
+        <!-- 🔒 Password Login Form -->
+        <div id="passwordLoginTab" class="login-page-form">
+            <form id="passwordForm" onsubmit="event.preventDefault(); handlePasswordLogin();">
+                <div class="form-group">
+                    <label for="passwordEmail">Email Address</label>
+                    <input type="email" id="passwordEmail" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="loginPagePassword">Password</label>
+                    <div class="input-with-icon">
+                        <input type="password" id="loginPagePassword" required placeholder="Enter your password">
+                        <i class="fa-regular fa-eye-slash" id="togglePasswordBtn" onclick="togglePasswordVisibility('loginPagePassword', 'togglePasswordBtn')"></i>
+                    </div>
+                </div>
+                <div class="form-actions" style="margin-bottom: 1rem;">
+                    <a href="#" class="forgot-link">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn-gold full-width" id="passwordSubmitBtn">
+                    <span>Login</span>
+                    <div class="spinner" id="passwordSpinner"></div>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-notification" id="toast">
+        <i class="fa-solid fa-circle-check" id="toastIcon" style="color: var(--secondary); font-size: 1.2rem;"></i>
+        <div id="toastMessage">Toast message goes here.</div>
+        <i class="fa-solid fa-xmark toast-close" onclick="hideToast()"></i>
+    </div>
+
+    <!-- Login Page Logic -->
+    <script>
+        let currentEmail = '';
+        let countdownInterval = null;
+
+        // Switch tabs
+        function switchLoginTab(tabId) {
+            document.querySelectorAll('.login-tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelectorAll('.login-page-form').forEach(form => {
+                form.classList.remove('active');
+            });
+
+            // Set active class
+            if (tabId === 'otpLoginTab') {
+                document.querySelector('.login-tab-btn:nth-child(1)').classList.add('active');
+            } else {
+                document.querySelector('.login-tab-btn:nth-child(2)').classList.add('active');
+            }
+            document.getElementById(tabId).classList.add('active');
+            
+            // Hide developer mock popups
+            document.getElementById('mockOtpPopup').style.display = 'none';
+        }
+
+        // Show/Hide password field
+        function togglePasswordVisibility(fieldId, iconId) {
+            const field = document.getElementById(fieldId);
+            const icon = document.getElementById(iconId);
+            if (field && icon) {
+                if (field.type === 'password') {
+                    field.type = 'text';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                } else {
+                    field.type = 'password';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                }
+            }
+        }
+
+        // Show toast
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMessage.textContent = message;
+            toast.className = 'toast-notification'; // Reset
+            toast.classList.add('active', type);
+
+            if (type === 'success') {
+                toastIcon.className = 'fa-solid fa-circle-check';
+                toastIcon.style.color = '#10B981';
+            } else if (type === 'error') {
+                toastIcon.className = 'fa-solid fa-circle-exclamation';
+                toastIcon.style.color = '#EF4444';
+            } else {
+                toastIcon.className = 'fa-solid fa-circle-info';
+                toastIcon.style.color = '#C9A84C';
+            }
+
+            // Auto-hide
+            setTimeout(hideToast, 5000);
+        }
+
+        function hideToast() {
+            document.getElementById('toast').classList.remove('active');
+        }
+
+        // Send OTP handler
+        async function handleSendOTP() {
+            const emailInput = document.getElementById('otpEmail');
+            const email = emailInput.value.trim();
+            if (!email) return;
+
+            currentEmail = email;
+
+            const sendBtn = document.getElementById('sendOtpBtn');
+            const spinner = document.getElementById('sendOtpSpinner');
+
+            // Show loading spinner
+            sendBtn.disabled = true;
+            spinner.style.display = 'block';
+
+            try {
+                const response = await fetch('/api/send-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    showToast('OTP sent successfully!', 'success');
+                    
+                    // Display fallback mode indicator
+                    if (data.mockMode) {
+                        document.getElementById('mockOtpPopup').style.display = 'flex';
+                        document.getElementById('mockOtpCode').textContent = data.otp;
+                        console.log('DEV-MODE: Received OTP is', data.otp);
+                    } else {
+                        document.getElementById('mockOtpPopup').style.display = 'none';
+                    }
+
+                    // Transition to step 2: verification
+                    document.getElementById('sendOtpForm').style.display = 'none';
+                    document.getElementById('verifyOtpForm').style.display = 'block';
+                    document.getElementById('otpInstructionsText').innerHTML = `We sent a 6-digit verification code to <strong style="color: #C9A84C">${email}</strong>`;
+
+                    // Start cooldown timer
+                    startCooldownTimer();
+
+                    // Focus the first OTP input digit
+                    setTimeout(() => {
+                        const inputs = document.querySelectorAll('.otp-digit-input');
+                        if (inputs.length > 0) {
+                            inputs[0].focus();
+                        }
+                    }, 100);
+
+                } else {
+                    showToast(data.message || 'Error sending OTP.', 'error');
+                    sendBtn.disabled = false;
+                }
+            } catch (err) {
+                console.error(err);
+                showToast('Failed to connect to server. Please try again.', 'error');
+                sendBtn.disabled = false;
+            } finally {
+                spinner.style.display = 'none';
+            }
+        }
+
+        // Verify OTP handler
+        async function handleVerifyOTP() {
+            const digitInputs = document.querySelectorAll('.otp-digit-input');
+            let otp = '';
+            digitInputs.forEach(input => otp += input.value.trim());
+
+            if (otp.length < 6) {
+                showToast('Please enter all 6 digits of the OTP.', 'error');
+                return;
+            }
+
+            const verifyBtn = document.getElementById('verifyOtpBtn');
+            const spinner = document.getElementById('verifyOtpSpinner');
+
+            verifyBtn.disabled = true;
+            spinner.style.display = 'block';
+
+            try {
+                const response = await fetch('/api/verify-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: currentEmail, otp })
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    showToast('Logged in successfully! Redirecting...', 'success');
+                    
+                    // Store logged in state
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('patientUser', JSON.stringify(data.user));
+
+                    // Hide helper popup
+                    document.getElementById('mockOtpPopup').style.display = 'none';
+
+                    // Redirect back to main website after 1.5 seconds
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                } else {
+                    showToast(data.message || 'Incorrect OTP code.', 'error');
+                    verifyBtn.disabled = false;
+                    // Reset fields on error
+                    digitInputs.forEach((input, index) => {
+                        input.value = '';
+                        if (index > 0) input.disabled = true;
+                    });
+                    digitInputs[0].focus();
+                }
+            } catch (err) {
+                console.error(err);
+                showToast('Failed to connect to server. Please try again.', 'error');
+                verifyBtn.disabled = false;
+            } finally {
+                spinner.style.display = 'none';
+            }
+        }
+
+        // Password Login Handler
+        function handlePasswordLogin() {
+            const email = document.getElementById('passwordEmail').value;
+            const password = document.getElementById('loginPagePassword').value;
+
+            const submitBtn = document.getElementById('passwordSubmitBtn');
+            const spinner = document.getElementById('passwordSpinner');
+
+            submitBtn.disabled = true;
+            spinner.style.display = 'block';
+
+            // Simulate successful authentication for standard logins as a fallback
+            setTimeout(() => {
+                const namePrefix = email.split('@')[0];
+                const formattedName = namePrefix.charAt(0).toUpperCase() + namePrefix.slice(1);
+                
+                showToast('Logged in successfully! Redirecting...', 'success');
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('patientUser', JSON.stringify({ name: formattedName, email }));
+
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            }, 1000);
+        }
+
+        // Start Resend OTP Cooldown Timer
+        function startCooldownTimer() {
+            if (countdownInterval) clearInterval(countdownInterval);
+            
+            const cooldownWrapper = document.getElementById('cooldownTextWrapper');
+            const cooldownSecs = document.getElementById('cooldownSeconds');
+            const resendBtn = document.getElementById('resendOtpBtn');
+
+            cooldownWrapper.style.display = 'block';
+            resendBtn.style.display = 'none';
+            let secondsLeft = 60;
+            cooldownSecs.textContent = secondsLeft;
+
+            countdownInterval = setInterval(() => {
+                secondsLeft--;
+                cooldownSecs.textContent = secondsLeft;
+
+                if (secondsLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    cooldownWrapper.style.display = 'none';
+                    resendBtn.style.display = 'block';
+                }
+            }, 1000);
+        }
+
+        // Setup OTP Digits Inputs Auto-focus and shifting
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = document.querySelectorAll('.otp-digit-input');
+
+            inputs.forEach((input, index) => {
+                // Focus shifting on entry
+                input.addEventListener('input', (e) => {
+                    const value = e.target.value;
+                    if (value && index < inputs.length - 1) {
+                        inputs[index + 1].removeAttribute('disabled');
+                        inputs[index + 1].focus();
+                    }
+                });
+
+                // Focus backshifting on backspace
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace') {
+                        if (!input.value && index > 0) {
+                            inputs[index].value = '';
+                            inputs[index].setAttribute('disabled', 'true');
+                            inputs[index - 1].focus();
+                        } else {
+                            input.value = '';
+                        }
+                    }
+                });
+
+                // Prevent entering non-numeric chars
+                input.addEventListener('keypress', (e) => {
+                    if (!/[0-9]/.test(e.key)) {
+                        e.preventDefault();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
