@@ -23,52 +23,23 @@
     --transition: all 0.3s ease;
 }
 
-/* --- GLOBAL BOX MODEL & OVERFLOW RESET --- */
-*, *::before, *::after {
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
-html, body {
-    overflow-x: hidden;
-    max-width: 100vw;
-    -webkit-text-size-adjust: 100%;
+
+html {
     scroll-behavior: smooth;
     font-size: 16px;
 }
+
 body {
     font-family: var(--font-body);
     color: var(--text-main);
     background-color: var(--white);
     line-height: 1.6;
-}
-
-/* --- IMAGES & CONTAINERS --- */
-img, video, iframe, embed, object {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* --- TYPOGRAPHY OVERFLOW PREVENTION --- */
-h1, h2, h3, h4, h5, h6,
-p, span, a, li, td, th, label {
-    word-break: break-word;
-    overflow-wrap: break-word;
-}
-
-/* --- TOUCH TARGET SIZE & MOBILE FORM SETTINGS --- */
-button, a, input[type="submit"],
-input[type="button"], select,
-[role="button"] {
-    min-height: 44px;
-    min-width: 44px;
-    cursor: pointer;
-}
-input, select, textarea {
-    font-size: 16px !important;
-    max-width: 100%;
+    overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -1856,30 +1827,83 @@ section {
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 1200px) {
-    .hero-title { font-size: 3.5rem; }
-    .contact-grid { grid-template-columns: 1fr; }
+
+/* ── Rule 1: Global fluid base ─────────────────────────────── */
+html {
+    font-size: clamp(14px, 1.5vw, 16px);
 }
 
-@media (max-width: 992px) {
-    .hero-container { grid-template-columns: 1fr; text-align: center; }
-    .hero-subtitle { margin: 0 auto 2rem; }
-    .hero-buttons { justify-content: center; }
-    .hero-image-wrapper { max-width: 500px; margin: 0 auto; }
-    
-    .stats-container { grid-template-columns: repeat(2, 1fr); }
-    
-    .about-grid { grid-template-columns: 1fr; }
-    .about-image { max-width: 400px; margin: 0 auto; }
-    
-    .cards-grid-3, .education-grid { grid-template-columns: 1fr; }
-    
-    .footer-grid { grid-template-columns: repeat(2, 1fr); }
-    
-    .social-bar { display: none; }
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
 }
 
+/* ── Breakpoint ≤ 1280px ────────────────────────────────────── */
+@media (max-width: 1280px) {
+    .hero-title { font-size: clamp(2.4rem, 5vw, 3.8rem); }
+    .section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+/* ── Breakpoint ≤ 1024px ────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .container { padding: 0 1.5rem; }
+    .nav-container { padding: 0 1.5rem; }
+
+    .hero-title  { font-size: clamp(2rem, 4.5vw, 3.2rem); }
+    .section-title { font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
+    .stat-number { font-size: 2.2rem; }
+
+    .hero-container { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
+    .hero-subtitle  { margin: 0 auto 2rem; }
+    .hero-buttons   { justify-content: center; flex-wrap: wrap; }
+    .hero-image-wrapper { max-width: 480px; margin: 0 auto; }
+
+    .stats-container { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+
+    .about-grid     { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-image    { max-width: 400px; margin: 0 auto; }
+
+    .cards-grid-3   { grid-template-columns: repeat(2, 1fr); }
+    .education-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+    .contact-grid   { grid-template-columns: 1fr; gap: 2rem; }
+
+    .footer-grid    { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+
+    .social-bar     { display: none; }
+}
+
+/* ── Breakpoint ≤ 768px (tablet/large phone) ────────────────── */
 @media (max-width: 768px) {
+    /* Rule 2: Container padding */
+    .container, .nav-container { padding: 0 1.25rem; }
+
+    /* Rule 3: Section vertical rhythm */
+    section { padding: 4rem 0; min-height: unset; }
+
+    /* Rule 4: Hero */
+    .hero-section   { padding-top: 6rem; padding-bottom: 2rem; }
+    .hero-title     { font-size: clamp(1.8rem, 7vw, 2.8rem); }
+    .hero-subtitle  { font-size: 1rem; margin: 0 auto 1.5rem; }
+    .hero-container { gap: 2rem; }
+    .hero-buttons   { flex-direction: column; align-items: center; }
+    .hero-buttons .btn-gold,
+    .hero-buttons .btn-outline { width: 100%; max-width: 320px; text-align: center; }
+
+    /* Rule 5: Stats bar */
+    .stats-bar      { padding: 2rem 0; }
+    .stats-container { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .stat-number    { font-size: 1.8rem; }
+    .stat-label     { font-size: 0.75rem; }
+
+    /* Rule 6: Section typography */
+    .section-title  { font-size: clamp(1.4rem, 6vw, 2rem); }
+    .section-subtitle { font-size: 0.95rem; margin-bottom: 2rem; }
+    .featured-title { font-size: 1.4rem; }
+    .score-number   { font-size: 3.5rem; }
+
+    /* Rule 7: Navigation — hamburger */
     .nav-links {
         display: none;
         position: absolute;
@@ -1888,49 +1912,170 @@ section {
         width: 100%;
         background-color: var(--white);
         flex-direction: column;
-        padding: 1rem 2rem;
+        padding: 1rem 1.5rem;
+        gap: 0;
         box-shadow: var(--shadow-md);
+        border-top: 2px solid var(--secondary);
     }
-    
     .nav-links.active { display: flex; }
+    .nav-link        { padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); font-size: 1rem; }
     .mobile-menu-btn { display: block; }
-    
-    .nav-actions { display: none; }
-    
-    .cards-grid-2 { grid-template-columns: 1fr; }
-    
+    .nav-actions     { display: none; }
+    .brand-logo      { font-size: 1.25rem; }
+
+    /* Rule 8: About section */
+    .about-grid     { grid-template-columns: 1fr; gap: 2rem; }
+    .quote          { font-size: 1rem; }
     .timeline-horizontal {
         flex-direction: column;
         gap: 2rem;
         padding-top: 0;
     }
-    
     .timeline-horizontal::before {
-        top: 0;
-        left: 23px;
-        width: 2px;
-        height: 100%;
+        top: 0; left: 23px;
+        width: 2px; height: 100%;
     }
-    
-    .timeline-dot {
-        position: absolute;
-        left: 15px;
-        top: 0;
-        margin: 0;
-    }
-    
-    .timeline-item { text-align: left; padding-left: 3rem; }
-    
+    .timeline-dot   { position: absolute; left: 15px; top: 0; margin: 0; }
+    .timeline-item  { text-align: left; padding-left: 3rem; }
+
+    /* Rule 9: Achievement cards */
+    .cards-grid-2   { grid-template-columns: 1fr; }
+    .cards-grid-3   { grid-template-columns: 1fr; }
+    .award-card     { padding: 1.5rem; }
+
+    /* Rule 10: Education */
+    .education-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .skills-wrapper { grid-template-columns: repeat(2, 1fr); }
+
+    /* Rule 11: Research */
+    .featured-pub   { padding: 1.75rem; }
+    .filter-tabs    { gap: 0.5rem; }
+    .filter-btn     { padding: 0.4rem 1rem; font-size: 0.85rem; }
+
+    /* Rule 12: Clinics */
+    .cards-grid-3.clinic-grid { grid-template-columns: 1fr; }
+    .map-placeholder { height: 250px; }
+
+    /* Rule 13: Reviews */
+    .rating-banner  { flex-direction: column; gap: 1.5rem; padding: 1.75rem 1.25rem; text-align: center; }
+    .rating-bars    { max-width: 100%; width: 100%; }
     .reviews-masonry { column-count: 1; }
-    
-    .rating-banner { flex-direction: column; gap: 2rem; }
-    
-    .media-row { grid-template-columns: 1fr !important; }
-    
+    .feedback-form-container { padding: 1.75rem 1.25rem; }
+
+    /* Rule 14: Media */
+    .media-row              { grid-template-columns: 1fr !important; }
+    .videos-row,
+    .articles-row,
+    .podcasts-row           { grid-template-columns: 1fr; }
+    .podcast-card           { flex-direction: row; gap: 1rem; }
+
+    /* Rule 15: Contact */
+    .contact-grid           { grid-template-columns: 1fr; gap: 1.5rem; }
+    .contact-form-wrapper   { padding: 1.75rem 1.25rem; }
+    .contact-info-panel     { padding: 1.75rem 1.25rem; }
+    .form-row, .form-row-2  { flex-direction: column; gap: 0; grid-template-columns: 1fr; }
+
+    /* Rule 16: Footer */
+    .footer-grid    { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem; }
+    .footer-bottom  { flex-direction: column; gap: 1rem; text-align: center; }
+    .footer-bottom-links { flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+    .newsletter-form { flex-direction: column; gap: 0.75rem; }
+    .newsletter-form input { width: 100%; }
+
+    /* Rule 17: Modal */
+    .modal-container { width: 95%; }
+    .modal-body      { padding: 1.25rem; }
+    .dashboard-container { padding: 1.25rem; max-width: 100%; }
+
+    /* Rule 18: Floating elements */
+    .floating-book-pill { font-size: 0.8rem; padding: 0.6rem 1rem; left: 15px; bottom: 20px; }
+    .floating-whatsapp  { width: 50px; height: 50px; font-size: 1.5rem; right: 15px; bottom: 20px; }
+    .toast-notification { right: 1rem; left: 1rem; max-width: unset; }
+}
+
+/* ── Breakpoint ≤ 480px (phones) ───────────────────────────── */
+@media (max-width: 480px) {
+    .container, .nav-container { padding: 0 1rem; }
+
+    section { padding: 3rem 0; }
+
+    /* Hero */
+    .hero-section   { padding-top: 5.5rem; }
+    .hero-title     { font-size: clamp(1.6rem, 8vw, 2.2rem); line-height: 1.15; }
+    .hero-badge     { font-size: 0.78rem; }
+    .hero-buttons .btn-gold,
+    .hero-buttons .btn-outline { padding: 0.7rem 1.2rem; font-size: 0.9rem; }
+
+    /* Stats */
+    .stats-container { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .stat-number    { font-size: 1.6rem; }
+    .stat-label     { font-size: 0.7rem; letter-spacing: 0; }
+
+    /* Typography */
+    .section-title  { font-size: clamp(1.25rem, 7vw, 1.7rem); }
+    .section-subtitle { font-size: 0.9rem; }
+
+    /* Skills */
+    .skills-wrapper { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .skill-tile     { padding: 1rem 0.75rem; font-size: 0.8rem; }
+    .skill-tile i   { font-size: 1.5rem; }
+
+    /* Cards */
+    .award-card, .pub-card { padding: 1.25rem; }
+    .card-title     { font-size: 1.05rem; }
+
+    /* Rating */
+    .score-number   { font-size: 3rem; }
+    .rating-banner  { padding: 1.25rem 1rem; }
+
+    /* Podcast */
+    .podcast-card   { flex-direction: column; align-items: flex-start; gap: 1rem; }
+
+    /* Navbar brand */
+    .brand-logo     { font-size: 1.1rem; }
+    .navbar         { padding: 0.75rem 0; }
+
+    /* Featured pub */
+    .featured-pub   { padding: 1.25rem 1rem; }
+    .featured-title { font-size: 1.2rem; }
+
+    /* Contact */
+    .contact-form-wrapper { padding: 1.25rem 1rem; }
+    .contact-info-panel   { padding: 1.25rem 1rem; }
+
+    /* Footer */
+    .footer         { padding: 2.5rem 0 1.5rem; }
+    .footer-brand   { font-size: 1.25rem; }
+
+    /* Floating buttons */
+    .floating-book-pill { display: none; }  /* hide text pill on tiny screens */
+    .floating-whatsapp  { width: 46px; height: 46px; font-size: 1.4rem; right: 12px; bottom: 16px; }
+
+    /* Review masonry */
+    .review-card    { padding: 1.25rem; }
     .form-row, .form-row-2 { flex-direction: column; gap: 0; }
-    
-    .footer-grid { grid-template-columns: 1fr; }
-    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+}
+
+/* ── Breakpoint ≤ 375px (small phones) ─────────────────────── */
+@media (max-width: 375px) {
+    .hero-title     { font-size: 1.55rem; }
+    .section-title  { font-size: 1.2rem; }
+    .stats-container { grid-template-columns: 1fr 1fr; }
+    .stat-number    { font-size: 1.4rem; }
+    .skills-wrapper { grid-template-columns: 1fr 1fr; }
+    .nav-link       { font-size: 0.9rem; }
+    .brand-logo     { font-size: 1rem; }
+    .modal-body     { padding: 1rem; }
+    .award-card, .pub-card, .clinic-body, .contact-form-wrapper, .contact-info-panel { padding: 1rem; }
+}
+
+/* ── Breakpoint ≤ 320px (very small phones) ─────────────────── */
+@media (max-width: 320px) {
+    .hero-title     { font-size: 1.35rem; }
+    .section-title  { font-size: 1.1rem; }
+    .btn-gold, .btn-outline { padding: 0.6rem 1rem; font-size: 0.85rem; }
+    .stats-container { grid-template-columns: 1fr; }
+    .skills-wrapper { grid-template-columns: 1fr 1fr; }
 }
 
 /* ===== TOAST NOTIFICATIONS ===== */
@@ -2044,248 +2189,5 @@ section {
 
 .star-selector i:hover {
     transform: scale(1.25);
-}
-
-/* ==========================================================================
-   MOBILE & TABLET RESPONSIVENESS OVERRIDES (Rules 3 to 17)
-   ========================================================================== */
-
-/* --- FLUID TYPOGRAPHY SCALE (Rule 8) --- */
-h1 { font-size: clamp(28px, 6vw, 72px) !important; }
-h2 { font-size: clamp(22px, 5vw, 48px) !important; }
-h3 { font-size: clamp(18px, 4vw, 32px) !important; }
-h4 { font-size: clamp(16px, 3vw, 24px) !important; }
-p, li { font-size: clamp(14px, 2vw, 18px) !important; }
-small, .caption, .label { font-size: clamp(11px, 1.5vw, 14px) !important; }
-
-/* --- SECTION PADDING & WRAPPERS (Rule 7) --- */
-@media (max-width: 768px) {
-    section {
-        padding-top: 48px !important;
-        padding-bottom: 48px !important;
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-    }
-    .container {
-        padding-left: 16px !important;
-        padding-right: 16px !important;
-    }
-}
-@media (max-width: 480px) {
-    section {
-        padding-top: 32px !important;
-        padding-bottom: 32px !important;
-    }
-}
-
-/* --- HERO SECTION FLUID DESIGN (Rule 4) --- */
-@media (max-width: 768px) {
-    .hero-section {
-        min-height: 85vh !important;
-        height: auto !important;
-        padding: 100px 20px 60px !important;
-    }
-    .hero-container {
-        grid-template-columns: 1fr !important;
-        text-align: center;
-        gap: 2.5rem !important;
-    }
-    .hero-subtitle {
-        margin: 0 auto 2rem !important;
-    }
-    .hero-image-wrapper {
-        max-width: 400px !important;
-        margin: 0 auto !important;
-    }
-}
-
-/* Hero & General Buttons Stacking (Rule 4 & 9) */
-@media (max-width: 480px) {
-    .hero-buttons, .btn-group, .button-row, .cta-group, .action-buttons {
-        flex-direction: column !important;
-        width: 100% !important;
-        gap: 12px !important;
-    }
-    .hero-buttons a, .hero-buttons button,
-    .btn-group a, .btn-group button,
-    .button-row a, .button-row button {
-        width: 100% !important;
-        justify-content: center !important;
-        text-align: center !important;
-    }
-}
-
-/* --- UNIVERSAL GRID & FLEX RESPONSIVENESS (Rule 5 & 6) --- */
-@media (max-width: 900px) {
-    .cards-grid-3, .education-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-    }
-}
-@media (max-width: 600px) {
-    .cards-grid-3, .education-grid, .stats-container, .about-grid, .contact-grid, .media-row, .footer-grid {
-        grid-template-columns: 1fr !important;
-    }
-    .cards-grid-2 {
-        grid-template-columns: 1fr !important;
-    }
-}
-
-/* --- SPLIT / FLEX SPLIT LAYOUT STACK (Rule 6) --- */
-@media (max-width: 768px) {
-    .split-layout, .two-panel, .side-by-side, .about-grid {
-        flex-direction: column !important;
-    }
-    .split-layout > *, .two-panel > *, .side-by-side > *, .about-grid > * {
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-    /* About image surgery/portrait split spacing */
-    .about-image-wrapper {
-        margin-top: 2rem !important;
-        width: 100% !important;
-    }
-}
-
-/* --- MOBILE STICKY PANELS (Rule 17) --- */
-@media (max-width: 768px) {
-    .sticky-panel, .sticky-sidebar, .research-sidebar-sticky, [class*="sticky"] {
-        position: relative !important;
-        top: auto !important;
-        height: auto !important;
-    }
-    /* Sticky navbar adjust height */
-    .navbar {
-        padding: 0.75rem 0 !important;
-        height: 64px !important;
-    }
-}
-
-/* --- MOBILE BOTTOM SHEETS FOR MODALS (Rule 12) --- */
-@media (max-width: 768px) {
-    .modal-container {
-        position: fixed !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        top: auto !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        max-height: 90vh !important;
-        overflow-y: auto !important;
-        border-radius: 16px 16px 0 0 !important;
-        transform: translateY(100%) !important;
-        margin: 0 !important;
-        padding: 24px 20px !important;
-        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15) !important;
-    }
-    .modal-overlay.active .modal-container {
-        transform: translateY(0) !important;
-    }
-    /* Dashboard custom height and layout */
-    .dashboard-container {
-        border-radius: 20px 20px 0 0 !important;
-        padding: 2rem 1rem !important;
-    }
-}
-
-/* --- RESPONSIVE TABLES WITH IN-CONTAINER SCROLL (Rule 13) --- */
-.table-responsive, .appointments-table {
-    display: block !important;
-    width: 100% !important;
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-}
-.appointments-table table {
-    min-width: 600px !important;
-    width: 100% !important;
-}
-
-/* --- MOBILE FORMS & SUBMIT BUTTONS (Rule 11) --- */
-@media (max-width: 768px) {
-    .form-row, .form-row-2, .input-row {
-        flex-direction: column !important;
-        gap: 16px !important;
-    }
-    .form-row > *, .form-row-2 > *, .input-row > * {
-        width: 100% !important;
-    }
-    .submit-btn, form button[type="submit"] {
-        width: 100% !important;
-        padding: 16px !important;
-    }
-}
-
-/* --- DISABLE CARD HOVER ON TOUCH DEVICES (Rule 10) --- */
-@media (hover: none) {
-    .award-card:hover, .pub-card:hover, .clinic-card:hover, .review-card:hover, .article-card:hover {
-        transform: none !important;
-        box-shadow: var(--shadow-sm) !important;
-        border-color: var(--border-color) !important;
-    }
-}
-
-/* --- DISABLE CUSTOM CURSOR & DIALS ON TOUCH DEVICES (Rule 16) --- */
-@media (hover: none) and (pointer: coarse) {
-    body {
-        cursor: auto !important;
-    }
-    .custom-cursor, .custom-cursor-dot {
-        display: none !important;
-    }
-}
-
-/* --- PREVENT iOS ZOOM ON MOBILE FORM FIELDS (Rule 11) --- */
-@media (max-width: 768px) {
-    input, select, textarea {
-        font-size: 16px !important;
-    }
-}
-
-/* --- FOOTER RESPONSIVE ADJUSTMENTS (Rule 15) --- */
-@media (max-width: 768px) {
-    footer {
-        padding: 40px 20px !important;
-        text-align: center !important;
-    }
-    footer .footer-grid {
-        grid-template-columns: 1fr !important;
-        text-align: center !important;
-        gap: 2rem !important;
-    }
-    .footer-bottom {
-        flex-direction: column !important;
-        gap: 1rem !important;
-        text-align: center !important;
-    }
-    .footer-bottom-links {
-        justify-content: center !important;
-        flex-wrap: wrap !important;
-    }
-}
-
-/* --- DEDICATED RESEARCH SUBPAGE DYNAMIC SCALING --- */
-@media (max-width: 768px) {
-    .research-hero-title {
-        font-size: clamp(1.6rem, 5vw, 2.5rem) !important;
-        line-height: 1.3 !important;
-    }
-    .research-hero {
-        padding: 2.5rem 1.5rem !important;
-        margin-bottom: 2rem !important;
-    }
-    .research-page {
-        padding-top: 80px !important;
-        padding-bottom: 40px !important;
-    }
-    .research-layout {
-        gap: 2rem !important;
-    }
-    .research-card {
-        padding: 1.5rem !important;
-        border-radius: 12px !important;
-    }
-    .sidebar-inquiry-form {
-        padding: 1.5rem !important;
-    }
 }
 

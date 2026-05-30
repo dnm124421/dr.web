@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Ayesha Sharma — Senior Cardiologist</title>
+    <title>Dr. Ayesha Sharma â€” Senior Cardiologist</title>
     <meta name="description" content="Delivering world-class cardiovascular care through a unique blend of clinical expertise, cutting-edge research, and a deeply personalized approach to patient well-being.">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,17 +13,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    <link rel='stylesheet' href='responsive.css'/>
+    <link rel="stylesheet" href="responsive.css">
 </head>
 <body>
 
-    <!-- 📌 GLOBAL FIXED / FLOATING ELEMENTS -->
+    <!-- ðŸ“Œ GLOBAL FIXED / FLOATING ELEMENTS -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#home" class="brand-logo">Dr. Ayesha Sharma</a>
             
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fa-solid fa-bars"></i>
-            </button>
+            <button class="hamburger-btn" id="hamburgerBtn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
 
             <div class="nav-links" id="navLinks">
                 <a href="#home" class="nav-link">Home</a>
@@ -59,16 +61,18 @@
             </div>
         </div>
     </nav>
+    <div class='mobile-nav-overlay' id='mobileNavOverlay'></div>
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
     <!-- Social Media Bar -->
     <aside class="social-bar">
-        <a href="#" class="social-link x-twitter"><i class="fa-brands fa-x-twitter"></i><span class="social-label">→ X / Twitter</span></a>
-        <a href="#" class="social-link linkedin"><i class="fa-brands fa-linkedin-in"></i><span class="social-label">→ LinkedIn</span></a>
-        <a href="#" class="social-link instagram"><i class="fa-brands fa-instagram"></i><span class="social-label">→ Instagram</span></a>
-        <a href="#" class="social-link youtube"><i class="fa-brands fa-youtube"></i><span class="social-label">→ YouTube</span></a>
-        <a href="#" class="social-link facebook"><i class="fa-brands fa-facebook-f"></i><span class="social-label">→ Facebook</span></a>
-        <a href="#" class="social-link researchgate"><i class="fa-brands fa-researchgate"></i><span class="social-label">→ ResearchGate</span></a>
-        <a href="#" class="social-link scholar"><i class="fa-solid fa-graduation-cap"></i><span class="social-label">→ Google Scholar</span></a>
+        <a href="#" class="social-link x-twitter"><i class="fa-brands fa-x-twitter"></i><span class="social-label">â†’ X / Twitter</span></a>
+        <a href="#" class="social-link linkedin"><i class="fa-brands fa-linkedin-in"></i><span class="social-label">â†’ LinkedIn</span></a>
+        <a href="#" class="social-link instagram"><i class="fa-brands fa-instagram"></i><span class="social-label">â†’ Instagram</span></a>
+        <a href="#" class="social-link youtube"><i class="fa-brands fa-youtube"></i><span class="social-label">â†’ YouTube</span></a>
+        <a href="#" class="social-link facebook"><i class="fa-brands fa-facebook-f"></i><span class="social-label">â†’ Facebook</span></a>
+        <a href="#" class="social-link researchgate"><i class="fa-brands fa-researchgate"></i><span class="social-label">â†’ ResearchGate</span></a>
+        <a href="#" class="social-link scholar"><i class="fa-solid fa-graduation-cap"></i><span class="social-label">â†’ Google Scholar</span></a>
     </aside>
 
     <!-- Floating WhatsApp -->
@@ -82,7 +86,7 @@
         <i class="fa-regular fa-calendar-check"></i> Book Appointment
     </a>
 
-    <!-- 🔒 SECTION 1 — LOGIN / SIGNUP MODAL + PATIENT PORTAL -->
+    <!-- ðŸ”’ SECTION 1 â€” LOGIN / SIGNUP MODAL + PATIENT PORTAL -->
     <div class="modal-overlay" id="loginModal">
         <div class="modal-container">
             <button class="modal-close" id="closeModalBtn"><i class="fa-solid fa-xmark"></i></button>
@@ -178,7 +182,7 @@
         </div>
     </div>
 
-    <!-- 🏠 SECTION 2 — HERO / HOME -->
+    <!-- ðŸ  SECTION 2 â€” HERO / HOME -->
     <section id="home" class="hero-section">
         <div class="container hero-container">
             <div class="hero-content animate-on-scroll">
@@ -220,7 +224,7 @@
         </div>
     </section>
 
-    <!-- 👩⚕️ SECTION 3 — ABOUT / BIOGRAPHY -->
+    <!-- ðŸ‘©âš•ï¸ SECTION 3 â€” ABOUT / BIOGRAPHY -->
     <section id="about" class="about-section bg-light">
         <div class="container">
             <div class="about-grid">
@@ -242,7 +246,29 @@
                     <div class="about-text">
                         <p>With over two decades of dedicated medical practice, Dr. Ayesha Sharma has established herself as a leading figure in the field of interventional cardiology. Her journey began with a profound desire to make a tangible difference in people's lives, driving her to pursue rigorous medical training at some of the world's most prestigious institutions.</p>
                         <p class="quote">"I believe every patient deserves both precision and compassion. Modern medicine provides us with incredible tools, but it is the human connection that truly heals."</p>
-                        <p>Beyond the operating room, Dr. Sharma is a passionate advocate for preventive cardiology and community health education. When she's not attending to patients or analyzing clinical research, she enjoys classical music, exploring historical literature, and mentoring the next generation of medical professionals.</p>
+                        <p>Beyond the operating room, Dr. Sharma is a passionate advocate for preventive cardiology and community health education. When she's not attending to patients or analyzing clinical research, she enjoys classical music, exploring historical literature, and mentoring the next g    // Mobile menu toggle (existing button)
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    }
+    // New hamburger button handling
+    if (hamburgerBtn && navLinks && mobileNavOverlay) {
+        hamburgerBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileNavOverlay.classList.toggle('active');
+        });
+        // Clicking overlay hides menu
+        mobileNavOverlay.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            mobileNavOverlay.classList.remove('active');
+        });
+    }dical professionals.</p>
                     </div>
                 </div>
             </div>
@@ -287,7 +313,7 @@
         </div>
     </section>
 
-    <!-- 🏆 SECTION 4 — ACHIEVEMENTS & AWARDS -->
+    <!-- ðŸ† SECTION 4 â€” ACHIEVEMENTS & AWARDS -->
     <section id="achievements" class="achievements-section">
         <div class="container">
             <div class="section-header text-center animate-on-scroll">
@@ -311,7 +337,7 @@
                         <div class="award-card">
                             <i class="fa-solid fa-medal icon-gold"></i>
                             <span class="card-year">2021</span>
-                            <h4 class="card-title">Best Interventional Cardiologist — Asia</h4>
+                            <h4 class="card-title">Best Interventional Cardiologist â€” Asia</h4>
                             <span class="card-source">Asia Pacific Cardiology Congress</span>
                             <p class="card-desc">Awarded for outstanding clinical outcomes and contributions to regional cardiovascular protocols.</p>
                         </div>
@@ -345,7 +371,7 @@
                     <div class="cards-grid-2">
                         <div class="award-card">
                             <i class="fa-solid fa-flask icon-gold"></i>
-                            <span class="card-year">2021–2024</span>
+                            <span class="card-year">2021â€“2024</span>
                             <h4 class="card-title">Advanced Therapeutics Fund</h4>
                             <span class="card-source">Institute of Health</span>
                             <p class="card-desc">Principal Investigator for a multi-million dollar grant studying long-term efficacy of novel bio-absorbable stents.</p>
@@ -391,7 +417,7 @@
         </div>
     </section>
 
-    <!-- 🎓 SECTION 5 — EDUCATION & QUALIFICATIONS -->
+    <!-- ðŸŽ“ SECTION 5 â€” EDUCATION & QUALIFICATIONS -->
     <section id="education" class="education-section bg-light">
         <div class="container">
             <div class="section-header text-center animate-on-scroll">
@@ -407,9 +433,9 @@
                         <div class="edu-content">
                             <div class="edu-header">
                                 <h4 class="edu-degree">Advanced Fellowship in Interventional Cardiology</h4>
-                                <span class="edu-year">2006–2008</span>
+                                <span class="edu-year">2006â€“2008</span>
                             </div>
-                            <h5 class="edu-inst">Cleveland Clinic, USA 🇺🇸</h5>
+                            <h5 class="edu-inst">Cleveland Clinic, USA ðŸ‡ºðŸ‡¸</h5>
                             <p class="edu-desc">Specialized training in complex coronary interventions, structural heart disease, and advanced hemodynamic support devices. Participated in multiple high-profile clinical trials.</p>
                         </div>
                     </div>
@@ -418,9 +444,9 @@
                         <div class="edu-content">
                             <div class="edu-header">
                                 <h4 class="edu-degree">MD in Internal Medicine</h4>
-                                <span class="edu-year">2002–2005</span>
+                                <span class="edu-year">2002â€“2005</span>
                             </div>
-                            <h5 class="edu-inst">AIIMS New Delhi 🇮🇳</h5>
+                            <h5 class="edu-inst">AIIMS New Delhi ðŸ‡®ðŸ‡³</h5>
                             <p class="edu-desc">Comprehensive residency with focus on acute cardiovascular care. Graduated with Honors.</p>
                         </div>
                     </div>
@@ -429,9 +455,9 @@
                         <div class="edu-content">
                             <div class="edu-header">
                                 <h4 class="edu-degree">MBBS</h4>
-                                <span class="edu-year">1996–2001</span>
+                                <span class="edu-year">1996â€“2001</span>
                             </div>
-                            <h5 class="edu-inst">Christian Medical College, Vellore 🇮🇳</h5>
+                            <h5 class="edu-inst">Christian Medical College, Vellore ðŸ‡®ðŸ‡³</h5>
                             <p class="edu-desc">Foundational medical education with extensive clinical exposure in a high-volume tertiary care setting.</p>
                         </div>
                     </div>
@@ -476,7 +502,7 @@
         </div>
     </section>
 
-    <!-- 🔬 SECTION 6 — RESEARCH & PUBLICATIONS -->
+    <!-- ðŸ”¬ SECTION 6 â€” RESEARCH & PUBLICATIONS -->
     <section id="research" class="research-section">
         <div class="container">
             <!-- Featured Publication -->
@@ -486,11 +512,11 @@
                     <h2 class="featured-title">Long-Term Efficacy of Novel Anticoagulants in High-Risk Structural Heart Disease</h2>
                     <p class="featured-desc">"A comprehensive 5-year longitudinal study evaluating safety profiles and thromboembolic prevention rates of next-generation DOACs."</p>
                     <div class="featured-meta">
-                        <p><strong>Published:</strong> The New England Journal of Medicine — October 2023</p>
+                        <p><strong>Published:</strong> The New England Journal of Medicine â€” October 2023</p>
                         <p><strong>DOI:</strong> 10.1056/NEJMoa2301452</p>
                         <p><strong>Co-Authors:</strong> Ayesha Sharma, David R. Patel, Emma L. Chen</p>
                     </div>
-                    <a href="research-anticoagulants.html" class="btn-gold mt-2">Read Paper →</a>
+                    <a href="research-anticoagulants.html" class="btn-gold mt-2">Read Paper â†’</a>
                 </div>
             </div>
 
@@ -508,50 +534,50 @@
                 <div class="pub-card">
                     <span class="pub-badge">Clinical Trials</span>
                     <h4 class="pub-title">Machine Learning Applications in Early Detection of Myocardial Infarction</h4>
-                    <p class="pub-journal">Journal of the American College of Cardiology — 2023</p>
+                    <p class="pub-journal">Journal of the American College of Cardiology â€” 2023</p>
                     <p class="pub-authors">Co-authors: A. Sharma, R. Kumar</p>
-                    <a href="research-ml-cardiology.html" class="pub-link">Read Paper →</a>
+                    <a href="research-ml-cardiology.html" class="pub-link">Read Paper â†’</a>
                 </div>
                 <div class="pub-card">
                     <span class="pub-badge">Cardiovascular Imaging</span>
                     <h4 class="pub-title">Bioresorbable Scaffold Outcomes at 5 Years</h4>
-                    <p class="pub-journal">Circulation — 2022</p>
+                    <p class="pub-journal">Circulation â€” 2022</p>
                     <p class="pub-authors">Co-authors: A. Sharma, T. Singh</p>
-                    <a href="research-bioresorbable.html" class="pub-link">Read Paper →</a>
+                    <a href="research-bioresorbable.html" class="pub-link">Read Paper â†’</a>
                 </div>
                 <div class="pub-card">
                     <span class="pub-badge">Reviews & Editorials</span>
                     <h4 class="pub-title">Gender Disparities in Cardiac Care Delivery</h4>
-                    <p class="pub-journal">The Lancet — 2022</p>
+                    <p class="pub-journal">The Lancet â€” 2022</p>
                     <p class="pub-authors">Co-authors: A. Sharma, M. Gupta</p>
-                    <a href="research-gender-disparities.html" class="pub-link">Read Paper →</a>
+                    <a href="research-gender-disparities.html" class="pub-link">Read Paper â†’</a>
                 </div>
                 <div class="pub-card">
                     <span class="pub-badge">Clinical Trials</span>
                     <h4 class="pub-title">Remote Patient Monitoring in Post-Bypass Recovery</h4>
-                    <p class="pub-journal">JACC: Digital Health — 2021</p>
+                    <p class="pub-journal">JACC: Digital Health â€” 2021</p>
                     <p class="pub-authors">Co-authors: A. Sharma, D. Patel</p>
-                    <a href="research-remote-monitoring.html" class="pub-link">Read Paper →</a>
+                    <a href="research-remote-monitoring.html" class="pub-link">Read Paper â†’</a>
                 </div>
                 <div class="pub-card">
                     <span class="pub-badge">Cardiovascular Imaging</span>
                     <h4 class="pub-title">Stress Echocardiography vs CT Angiography</h4>
-                    <p class="pub-journal">European Heart Journal — 2020</p>
+                    <p class="pub-journal">European Heart Journal â€” 2020</p>
                     <p class="pub-authors">Co-authors: A. Sharma, S. Lee</p>
-                    <a href="research-stress-echo.html" class="pub-link">Read Paper →</a>
+                    <a href="research-stress-echo.html" class="pub-link">Read Paper â†’</a>
                 </div>
                 <div class="pub-card">
                     <span class="pub-badge">Preventive Cardiology</span>
                     <h4 class="pub-title">Statin Therapy in South Asian Populations</h4>
-                    <p class="pub-journal">BMJ — 2019</p>
+                    <p class="pub-journal">BMJ â€” 2019</p>
                     <p class="pub-authors">Co-authors: A. Sharma, V. Krishnan</p>
-                    <a href="research-statin-therapy.html" class="pub-link">Read Paper →</a>
+                    <a href="research-statin-therapy.html" class="pub-link">Read Paper â†’</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 🏥 SECTION 7 — CLINICS & HOSPITAL AFFILIATIONS -->
+    <!-- ðŸ¥ SECTION 7 â€” CLINICS & HOSPITAL AFFILIATIONS -->
     <section id="clinics" class="clinics-section bg-light">
         <div class="container">
             <div class="section-header text-center animate-on-scroll">
@@ -568,7 +594,7 @@
                     </div>
                     <div class="clinic-body">
                         <p class="clinic-detail"><i class="fa-solid fa-location-dot"></i> Connaught Place, New Delhi</p>
-                        <p class="clinic-detail"><i class="fa-regular fa-clock"></i> Mon, Wed, Fri 9AM–1PM</p>
+                        <p class="clinic-detail"><i class="fa-regular fa-clock"></i> Mon, Wed, Fri 9AMâ€“1PM</p>
                         <p class="clinic-detail"><i class="fa-solid fa-phone"></i> +91 11 4567 8900</p>
                     </div>
                     <div class="clinic-footer">
@@ -586,7 +612,7 @@
                     <div class="clinic-body">
                         <p class="clinic-detail"><i class="fa-solid fa-user-tie"></i> Senior Consultant</p>
                         <p class="clinic-detail"><i class="fa-solid fa-location-dot"></i> Sarita Vihar, New Delhi</p>
-                        <p class="clinic-detail"><i class="fa-regular fa-clock"></i> Tue, Thu 10AM–4PM</p>
+                        <p class="clinic-detail"><i class="fa-regular fa-clock"></i> Tue, Thu 10AMâ€“4PM</p>
                         <p class="clinic-detail"><i class="fa-solid fa-phone"></i> +91 11 2692 5858</p>
                     </div>
                     <div class="clinic-footer">
@@ -604,7 +630,7 @@
                     <div class="clinic-body">
                         <p class="clinic-detail"><i class="fa-solid fa-user-tie"></i> Visiting Consultant</p>
                         <p class="clinic-detail"><i class="fa-solid fa-location-dot"></i> Saket, New Delhi</p>
-                        <p class="clinic-detail"><i class="fa-regular fa-clock"></i> Saturday 9AM–12PM</p>
+                        <p class="clinic-detail"><i class="fa-regular fa-clock"></i> Saturday 9AMâ€“12PM</p>
                         <p class="clinic-detail"><i class="fa-solid fa-phone"></i> +91 11 2651 5050</p>
                     </div>
                     <div class="clinic-footer">
@@ -622,7 +648,7 @@
                     <div class="clinic-body">
                         <p class="clinic-detail"><i class="fa-solid fa-user-tie"></i> Senior Consultant</p>
                         <p class="clinic-detail"><i class="fa-solid fa-location-dot"></i> Okhla, New Delhi</p>
-                        <p class="clinic-detail"><i class="fa-regular fa-clock"></i> Mon, Thu 2PM–6PM</p>
+                        <p class="clinic-detail"><i class="fa-regular fa-clock"></i> Mon, Thu 2PMâ€“6PM</p>
                         <p class="clinic-detail"><i class="fa-solid fa-phone"></i> +91 11 4713 5000</p>
                     </div>
                     <div class="clinic-footer">
@@ -640,7 +666,7 @@
                     <div class="clinic-body">
                         <p class="clinic-detail"><i class="fa-solid fa-user-tie"></i> Academic Affiliation</p>
                         <p class="clinic-detail"><i class="fa-solid fa-location-dot"></i> Ansari Nagar, New Delhi</p>
-                        <p class="clinic-detail"><i class="fa-regular fa-clock"></i> Friday 8AM–11AM</p>
+                        <p class="clinic-detail"><i class="fa-regular fa-clock"></i> Friday 8AMâ€“11AM</p>
                         <p class="clinic-detail"><i class="fa-solid fa-phone"></i> +91 11 2658 8500</p>
                     </div>
                     <div class="clinic-footer">
@@ -677,7 +703,7 @@
         </div>
     </section>
 
-    <!-- ⭐ SECTION 8 — PATIENT REVIEWS & TESTIMONIALS -->
+    <!-- â­ SECTION 8 â€” PATIENT REVIEWS & TESTIMONIALS -->
     <section id="reviews" class="reviews-section">
         <div class="container">
             <!-- Rating Summary -->
@@ -813,7 +839,7 @@
         </div>
     </section>
 
-    <!-- 📺 SECTION 9 — MEDIA & PRESS -->
+    <!-- ðŸ“º SECTION 9 â€” MEDIA & PRESS -->
     <section id="media" class="media-section bg-light">
         <div class="container">
             <div class="section-header text-center animate-on-scroll">
@@ -835,13 +861,13 @@
                     <div class="video-thumb">
                         <i class="fa-solid fa-play play-icon"></i>
                     </div>
-                    <h4 class="media-title">The Future of Non-Invasive Cardiology — Global Health Summit 2024</h4>
+                    <h4 class="media-title">The Future of Non-Invasive Cardiology â€” Global Health Summit 2024</h4>
                 </div>
                 <div class="video-card">
                     <div class="video-thumb">
                         <i class="fa-solid fa-play play-icon"></i>
                     </div>
-                    <h4 class="media-title">Rethinking Cardiac Prevention — TEDx Talk 2021</h4>
+                    <h4 class="media-title">Rethinking Cardiac Prevention â€” TEDx Talk 2021</h4>
                 </div>
             </div>
 
@@ -851,7 +877,7 @@
                     <div class="article-thumb"></div>
                     <div class="article-content">
                         <span class="article-date">2023</span>
-                        <h4 class="media-title">Times of India — India's Top 10 Doctors 2023</h4>
+                        <h4 class="media-title">Times of India â€” India's Top 10 Doctors 2023</h4>
                         <a href="#" class="media-link">Read Article <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -859,7 +885,7 @@
                     <div class="article-thumb"></div>
                     <div class="article-content">
                         <span class="article-date">Sep 2023</span>
-                        <h4 class="media-title">The Telegraph — Women Breaking Barriers in Surgical Cardiology</h4>
+                        <h4 class="media-title">The Telegraph â€” Women Breaking Barriers in Surgical Cardiology</h4>
                         <a href="#" class="media-link">Read Article <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -867,7 +893,7 @@
                     <div class="article-thumb"></div>
                     <div class="article-content">
                         <span class="article-date">Oct 2023</span>
-                        <h4 class="media-title">International Journal of Cardiology — Advancements in Stent Technology</h4>
+                        <h4 class="media-title">International Journal of Cardiology â€” Advancements in Stent Technology</h4>
                         <a href="#" class="media-link">Read Article <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -878,7 +904,7 @@
                 <div class="podcast-card">
                     <div class="podcast-icon"><i class="fa-solid fa-headphones"></i></div>
                     <div class="podcast-content">
-                        <span class="podcast-meta">Heart Matters • 42 min</span>
+                        <span class="podcast-meta">Heart Matters â€¢ 42 min</span>
                         <h4 class="media-title">Navigating Stress and Cardiovascular Health</h4>
                     </div>
                     <button class="podcast-play"><i class="fa-solid fa-circle-play"></i></button>
@@ -886,7 +912,7 @@
                 <div class="podcast-card">
                     <div class="podcast-icon"><i class="fa-solid fa-headphones"></i></div>
                     <div class="podcast-content">
-                        <span class="podcast-meta">The Medical Mindset Podcast • 58 min</span>
+                        <span class="podcast-meta">The Medical Mindset Podcast â€¢ 58 min</span>
                         <h4 class="media-title">Precision Medicine in Cardiology</h4>
                     </div>
                     <button class="podcast-play"><i class="fa-solid fa-circle-play"></i></button>
@@ -901,7 +927,7 @@
         </div>
     </section>
 
-    <!-- 📅 SECTION 10 — CONTACT & BOOK APPOINTMENT -->
+    <!-- ðŸ“… SECTION 10 â€” CONTACT & BOOK APPOINTMENT -->
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="contact-grid">
@@ -949,9 +975,9 @@
                                 <div class="custom-select-wrapper">
                                     <select required class="custom-select">
                                         <option value="" disabled selected>Select time</option>
-                                        <option value="morning">Morning 9:00 AM – 12:00 PM</option>
-                                        <option value="afternoon">Afternoon 12:00 PM – 4:00 PM</option>
-                                        <option value="evening">Evening 4:00 PM – 7:00 PM</option>
+                                        <option value="morning">Morning 9:00 AM â€“ 12:00 PM</option>
+                                        <option value="afternoon">Afternoon 12:00 PM â€“ 4:00 PM</option>
+                                        <option value="evening">Evening 4:00 PM â€“ 7:00 PM</option>
                                     </select>
                                     <i class="fa-solid fa-chevron-down select-icon"></i>
                                 </div>
@@ -965,7 +991,7 @@
                             <input type="checkbox" id="privacyAgree" required>
                             <label for="privacyAgree">I agree to the privacy policy and terms of service.</label>
                         </div>
-                        <button type="submit" class="btn-gold full-width">Request Appointment →</button>
+                        <button type="submit" class="btn-gold full-width">Request Appointment â†’</button>
                     </form>
                 </div>
 
@@ -1012,7 +1038,7 @@
                             <i class="fa-solid fa-clock"></i>
                             <div>
                                 <strong>Office Hours</strong>
-                                <p>Monday–Saturday 9:00 AM – 6:00 PM</p>
+                                <p>Mondayâ€“Saturday 9:00 AM â€“ 6:00 PM</p>
                             </div>
                         </li>
                     </ul>
@@ -1027,7 +1053,7 @@
         </div>
     </section>
 
-    <!-- 🔻 FOOTER -->
+    <!-- ðŸ”» FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -1112,3 +1138,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
