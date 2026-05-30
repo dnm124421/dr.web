@@ -167,7 +167,8 @@ h3 { font-size: clamp(1.25rem, 3vw, 2rem); }
   background: var(--secondary-hover);
 }
 
-/* Rule 14 – Smooth Scroll Behavior */nhtml {
+/* Rule 14 – Smooth Scroll Behavior */
+html {
   scroll-behavior: smooth;
 }
 

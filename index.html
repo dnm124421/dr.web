@@ -40,6 +40,9 @@
             </div>
             
             <div class="nav-actions">
+                <button id="darkModeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
                 <a href="login.html" class="nav-login-btn" id="openLoginModalBtn">
                     <i class="fa-regular fa-user"></i> Patient Login
                 </a>
@@ -177,7 +180,57 @@
                             <td>-</td>
                         </tr>
                     </tbody>
-    <!-- ðŸ‘©âš•ï¸ SECTION 3 â€” ABOUT / BIOGRAPHY -->
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🏠 SECTION 2 — HERO / HOME -->
+    <section id="home" class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-content animate-on-scroll">
+                <div class="hero-badge"><i class="fa-solid fa-award"></i> Senior Cardiologist | 20+ Years Experience</div>
+                <h1 class="hero-title">Dr. Ayesha Sharma</h1>
+                <p class="hero-subtitle">Delivering world-class cardiovascular care through a unique blend of clinical expertise, cutting-edge research, and a deeply personalized approach to patient well-being.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-gold">Book Appointment</a>
+                    <a href="#about" class="btn-outline">View Profile</a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper animate-on-scroll">
+                <div class="hero-image">
+                    <!-- Premium responsive hero picture with desktop & mobile assets -->
+                    <picture class="hero-picture">
+                        <source media="(min-width: 768px)" srcset="assets/hero_desktop.png">
+                        <img src="assets/hero_mobile.png" alt="Dr. Ayesha Sharma - Senior Cardiologist" class="hero-img-responsive">
+                    </picture>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats-bar">
+            <div class="container stats-container">
+                <div class="stat-item">
+                    <h3 class="stat-number" data-target="20">0</h3>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-number" data-target="10000" data-suffix="+">0</h3>
+                    <span class="stat-label">Patients Treated</span>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-number" data-target="30" data-suffix="+">0</h3>
+                    <span class="stat-label">Research Papers</span>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-number" data-target="5">0</h3>
+                    <span class="stat-label">Hospital Affiliations</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ðŸ‘©âš•ï¸  SECTION 3 â€” ABOUT / BIOGRAPHY -->
     <section id="about" class="about-section bg-light">
         <div class="container">
             <div class="about-grid">
@@ -199,29 +252,7 @@
                     <div class="about-text">
                         <p>With over two decades of dedicated medical practice, Dr. Ayesha Sharma has established herself as a leading figure in the field of interventional cardiology. Her journey began with a profound desire to make a tangible difference in people's lives, driving her to pursue rigorous medical training at some of the world's most prestigious institutions.</p>
                         <p class="quote">"I believe every patient deserves both precision and compassion. Modern medicine provides us with incredible tools, but it is the human connection that truly heals."</p>
-                        <p>Beyond the operating room, Dr. Sharma is a passionate advocate for preventive cardiology and community health education. When she's not attending to patients or analyzing clinical research, she enjoys classical music, exploring historical literature, and mentoring the next g    // Mobile menu toggle (existing button)
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const navLinks = document.getElementById('navLinks');
-    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-
-    if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-    }
-    // New hamburger button handling
-    if (hamburgerBtn && navLinks && mobileNavOverlay) {
-        hamburgerBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileNavOverlay.classList.toggle('active');
-        });
-        // Clicking overlay hides menu
-        mobileNavOverlay.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            mobileNavOverlay.classList.remove('active');
-        });
-    }dical professionals.</p>
+                        <p>Beyond the operating room, Dr. Sharma is a passionate advocate for preventive cardiology and community health education. When she's not attending to patients or analyzing clinical research, she enjoys classical music, exploring historical literature, and mentoring the next generation of medical professionals.</p>
                     </div>
                 </div>
             </div>

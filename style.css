@@ -1,26 +1,54 @@
 /* ===== CSS VARIABLES & RESET ===== */
 :root {
+    --bg-main: #FFFFFF;
+    --bg-light: #F8F9FA;
+    --bg-card: #FFFFFF;
+    --bg-navbar: #FFFFFF;
+
     --primary: #0A1628; /* Deep Navy Blue */
     --secondary: #C9A84C; /* Gold */
     --secondary-hover: #D8B75E;
     --white: #FFFFFF;
-    --bg-light: #F8F9FA;
     --text-main: #333333;
     --text-muted: #666666;
     --border-color: #E2E8F0;
     --success: #10B981;
     --warning: #F59E0B;
     --danger: #EF4444;
-    
+
+    --color-title: #0A1628;
+    --color-navbar-links: #0A1628;
+
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
-    
+
     --shadow-sm: 0 1px 3px rgba(10, 22, 40, 0.1);
     --shadow-md: 0 4px 6px rgba(10, 22, 40, 0.1);
     --shadow-lg: 0 10px 15px rgba(10, 22, 40, 0.1);
     --shadow-gold: 0 4px 20px rgba(201, 168, 76, 0.3);
-    
-    --transition: all 0.3s ease;
+
+    --transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Dark Mode Variable Overrides */
+html[data-theme="dark"] {
+    --bg-main: #0B132B; /* Sleek deep navy dark */
+    --bg-light: #1C2541; /* Slightly lighter navy */
+    --bg-card: #1C2541;
+    --bg-navbar: #0B132B;
+
+    --primary: #CBD5E1; /* Light gray for primary actions in dark mode */
+    --white: #1C2541; /* Invert white backgrounds to dark navy */
+    --text-main: #E2E8F0;
+    --text-muted: #94A3B8;
+    --border-color: #3A506B;
+
+    --color-title: #FFFFFF;
+    --color-navbar-links: #E2E8F0;
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.7);
 }
 
 * {
@@ -32,21 +60,24 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    transition: var(--transition);
 }
 
 body {
     font-family: var(--font-body);
     color: var(--text-main);
-    background-color: var(--white);
+    background-color: var(--bg-main);
     line-height: 1.6;
     overflow-x: hidden;
+    transition: var(--transition);
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    color: var(--primary);
+    color: var(--color-title);
     line-height: 1.2;
     margin-bottom: 1rem;
+    transition: var(--transition);
 }
 
 p {
@@ -67,6 +98,25 @@ img {
     max-width: 100%;
     height: auto;
     display: block;
+}
+
+/* Dark Mode Toggle Button styling */
+.theme-toggle-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-navbar-links);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.theme-toggle-btn:hover {
+    color: var(--secondary);
+    transform: scale(1.1);
 }
 
 /* ===== UTILITIES ===== */
@@ -150,7 +200,7 @@ button {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--white);
+    background-color: var(--bg-navbar);
     box-shadow: var(--shadow-sm);
     z-index: 1000;
     padding: 1rem 0;
@@ -181,7 +231,7 @@ button {
 .nav-link {
     font-size: 0.9rem;
     font-weight: 500;
-    color: var(--primary);
+    color: var(--color-navbar-links);
     position: relative;
 }
 
@@ -208,7 +258,7 @@ button {
 
 .nav-login-btn {
     font-weight: 500;
-    color: var(--primary);
+    color: var(--color-navbar-links);
     transition: var(--transition);
 }
 
@@ -219,7 +269,7 @@ button {
 .mobile-menu-btn {
     display: none;
     font-size: 1.5rem;
-    color: var(--primary);
+    color: var(--color-navbar-links);
 }
 
 /* User Dropdown */
@@ -705,6 +755,30 @@ section {
     aspect-ratio: 3/4;
     box-shadow: 15px 15px 0 var(--secondary);
     background-image: url('ayesha_sharma.jpg');
+}
+
+.hero-image {
+    width: 100%;
+    position: relative;
+}
+
+.hero-picture {
+    width: 100%;
+    display: block;
+}
+
+.hero-img-responsive {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(10, 22, 40, 0.2);
+    border: 4px solid var(--secondary);
+    transition: var(--transition);
+}
+
+.hero-img-responsive:hover {
+    transform: scale(1.02) translateY(-5px);
+    box-shadow: 0 30px 60px rgba(10, 22, 40, 0.3), var(--shadow-gold);
 }
 
 .stats-bar {
@@ -1910,7 +1984,7 @@ img, video, iframe {
         top: 100%;
         left: 0;
         width: 100%;
-        background-color: var(--white);
+        background-color: var(--bg-navbar);
         flex-direction: column;
         padding: 1rem 1.5rem;
         gap: 0;

@@ -1,3 +1,13 @@
+// Immediate Theme Detection (avoids flash of light mode)
+(function() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+    }
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
     /* ===== TOAST NOTIFICATION UTILITIES ===== */
     const toast = document.getElementById('toast');
@@ -121,6 +131,39 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.classList.remove('scrolled');
         }
     });
+
+    /* ===== DARK MODE TOGGLE ===== */
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const themeIcon = darkModeToggle ? darkModeToggle.querySelector('i') : null;
+
+    // Set initial icon based on theme
+    function updateThemeIcon() {
+        if (!themeIcon) return;
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            themeIcon.className = 'fa-solid fa-sun';
+            themeIcon.style.color = '#F59E0B'; // Warm amber sun
+        } else {
+            themeIcon.className = 'fa-solid fa-moon';
+            themeIcon.style.color = 'var(--color-navbar-links)'; // Default moon color
+        }
+    }
+    updateThemeIcon();
+
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            let newTheme = 'light';
+            if (currentTheme === 'light') {
+                newTheme = 'dark';
+            }
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon();
+            showToast(`Switched to ${newTheme} mode!`, 'info');
+        });
+    }
 
     /* ===== MOBILE MENU TOGGLE ===== */
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
