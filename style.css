@@ -19,6 +19,10 @@
     --color-title: #0A1628;
     --color-navbar-links: #0A1628;
 
+    --bg-dark-section: #0A1628;
+    --text-dark-section: #CBD5E1;
+    --heading-dark-section: #FFFFFF;
+
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
 
@@ -45,6 +49,10 @@ html[data-theme="dark"] {
 
     --color-title: #FFFFFF;
     --color-navbar-links: #E2E8F0;
+
+    --bg-dark-section: #070C19; /* Extra rich deep dark navy to stay dark */
+    --text-dark-section: #94A3B8;
+    --heading-dark-section: #FFFFFF;
 
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.6);
@@ -782,7 +790,7 @@ section {
 }
 
 .stats-bar {
-    background-color: var(--primary);
+    background-color: var(--bg-dark-section);
     padding: 3rem 0;
     margin-top: 4rem;
 }
@@ -801,7 +809,7 @@ section {
 }
 
 .stat-label {
-    color: var(--white);
+    color: var(--heading-dark-section);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -1099,8 +1107,8 @@ section {
 
 /* ===== RESEARCH SECTION ===== */
 .featured-pub {
-    background-color: var(--primary);
-    color: var(--white);
+    background-color: var(--bg-dark-section);
+    color: var(--text-dark-section);
     padding: 3rem;
     border-radius: 8px;
     border-left: 8px solid var(--secondary);
@@ -1120,7 +1128,7 @@ section {
 }
 
 .featured-title {
-    color: var(--white);
+    color: var(--heading-dark-section);
     font-size: 2rem;
     margin: 1.5rem 0;
 }
@@ -1733,14 +1741,14 @@ section {
 }
 
 .contact-info-panel {
-    background-color: var(--primary);
-    color: var(--white);
+    background-color: var(--bg-dark-section);
+    color: var(--text-dark-section);
     padding: 3rem;
     border-radius: 8px;
 }
 
 .panel-title {
-    color: var(--white);
+    color: var(--heading-dark-section);
     margin-bottom: 2rem;
     border-bottom: 1px solid rgba(255,255,255,0.1);
     padding-bottom: 1rem;
@@ -1780,8 +1788,8 @@ section {
 
 /* ===== FOOTER ===== */
 .footer {
-    background-color: var(--primary);
-    color: var(--white);
+    background-color: var(--bg-dark-section);
+    color: var(--text-dark-section);
     padding: 4rem 0 2rem;
 }
 
@@ -1821,7 +1829,7 @@ section {
 }
 
 .footer-heading {
-    color: var(--white);
+    color: var(--heading-dark-section);
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
 }
@@ -1897,7 +1905,7 @@ section {
 }
 
 .footer-bottom-links a:hover {
-    color: var(--white);
+    color: #FFFFFF;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
