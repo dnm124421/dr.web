@@ -159,7 +159,7 @@ button {
 .btn-gold {
     display: inline-block;
     background-color: var(--secondary);
-    color: var(--white);
+    color: #FFFFFF;
     padding: 0.75rem 1.5rem;
     border-radius: 4px;
     font-weight: 500;
@@ -357,6 +357,7 @@ button {
 
 .social-link:hover {
     width: 45px;
+    color: #FFFFFF;
 }
 
 .social-link.x-twitter:hover { background-color: #000000; }
@@ -388,6 +389,7 @@ button {
 .social-link:hover .social-label {
     opacity: 1;
     transform: translateX(0);
+    color: #FFFFFF;
 }
 
 /* WhatsApp */
@@ -398,7 +400,7 @@ button {
     width: 60px;
     height: 60px;
     background-color: #25D366;
-    color: var(--white);
+    color: #FFFFFF;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -438,7 +440,7 @@ button {
     bottom: 30px;
     left: 30px;
     background-color: var(--secondary);
-    color: var(--white);
+    color: #FFFFFF;
     padding: 0.75rem 1.5rem;
     border-radius: 30px;
     font-weight: 500;
@@ -691,7 +693,7 @@ section {
     display: inline-block;
     padding: 0.5rem 1rem;
     background-color: var(--secondary);
-    color: var(--white);
+    color: #FFFFFF;
     border-radius: 4px;
     font-weight: 500;
     font-size: 0.85rem;
@@ -1263,9 +1265,9 @@ section {
     text-transform: uppercase;
 }
 
-.clinic-badge.private { background-color: var(--secondary); color: var(--white); }
+.clinic-badge.private { background-color: var(--secondary); color: #FFFFFF; }
 .clinic-badge.hospital { background-color: rgba(255,255,255,0.2); color: var(--white); }
-.clinic-badge.teaching { background-color: #4285F4; color: var(--white); }
+.clinic-badge.teaching { background-color: #4285F4; color: #FFFFFF; }
 
 .clinic-body {
     padding: 1.5rem;
@@ -1546,7 +1548,7 @@ section {
 
 .play-icon {
     font-size: 3rem;
-    color: var(--white);
+    color: #FFFFFF;
     z-index: 1;
     background-color: rgba(201, 168, 76, 0.8);
     width: 80px;
@@ -1985,25 +1987,40 @@ img, video, iframe {
     .featured-title { font-size: 1.4rem; }
     .score-number   { font-size: 3.5rem; }
 
-    /* Rule 7: Navigation — hamburger */
+    /* Rule 7: Navigation — mobile slide-out drawer */
     .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        max-width: 320px;
+        height: 100vh;
+        height: 100dvh;
         background-color: var(--bg-navbar);
         flex-direction: column;
-        padding: 1rem 1.5rem;
+        align-items: stretch;
+        padding: 5rem 2rem 2rem;
         gap: 0;
-        box-shadow: var(--shadow-md);
-        border-top: 2px solid var(--secondary);
+        box-shadow: -4px 0 30px rgba(0,0,0,0.3);
+        z-index: 1100;
+        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-y: auto;
     }
-    .nav-links.active { display: flex; }
-    .nav-link        { padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); font-size: 1rem; }
-    .mobile-menu-btn { display: block; }
-    .nav-actions     { display: none; }
-    .brand-logo      { font-size: 1.25rem; }
+    .nav-links.active { right: 0; display: flex; }
+    .nav-link {
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border-color);
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--color-navbar-links);
+    }
+    .nav-link:last-child { border-bottom: none; }
+    .hamburger-btn { display: flex !important; }
+    /* Keep dark-mode toggle visible; hide login btn & book btn */
+    .nav-actions .nav-login-btn,
+    .nav-actions .nav-book-btn,
+    .nav-actions .logged-in-state { display: none; }
+    .brand-logo { font-size: 1.25rem; }
 
     /* Rule 8: About section */
     .about-grid     { grid-template-columns: 1fr; gap: 2rem; }
@@ -2167,7 +2184,7 @@ img, video, iframe {
     right: 30px;
     background: rgba(10, 22, 40, 0.95);
     border-left: 4px solid var(--secondary);
-    color: var(--white);
+    color: #FFFFFF;
     padding: 1rem 1.5rem;
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
