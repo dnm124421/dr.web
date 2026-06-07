@@ -24,6 +24,12 @@ app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'login.html'));
 });
 
+// Serve international.html for /international path
+app.get('/international', (req, res) => {
+    res.sendFile(path.join(__dirname, 'international.html'));
+});
+
+
 // Temporary in-memory store for OTPs
 // Maps email -> { otp, expiresAt, attempts }
 const otpStore = new Map();
