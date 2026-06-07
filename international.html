@@ -472,10 +472,14 @@
                 </div>
                 <div class="step-node" id="stepNode2">
                     <div class="step-circle">2</div>
-                    <div class="step-label">Booking</div>
+                    <div class="step-label">Scheduling</div>
                 </div>
                 <div class="step-node" id="stepNode3">
                     <div class="step-circle">3</div>
+                    <div class="step-label">Payment</div>
+                </div>
+                <div class="step-node" id="stepNode4">
+                    <div class="step-circle">4</div>
                     <div class="step-label">Confirmation</div>
                 </div>
             </div>
@@ -617,19 +621,75 @@
                             <i class="fa-solid fa-arrow-left"></i> Back
                         </button>
                         <button type="button" class="btn-gold" id="confirmBookingBtn" onclick="submitBooking()" style="padding: 0.85rem 2.5rem; display: inline-flex; align-items: center; gap: 0.5rem;" disabled>
-                            Book & Schedule Consultation <i class="fa-solid fa-calendar-check"></i>
+                            Proceed to Payment <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- STEP 3: BOOKING SUCCESS PAGE -->
+                <!-- STEP 3: SECURE PAYMENT -->
                 <div class="form-step" id="formStep3">
+                    <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; color: var(--color-title);">3. Secure Consultation Fee Payment</h3>
+                    
+                    <div style="max-width: 550px; margin: 0 auto;">
+                        <div style="background-color: var(--bg-light); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+                                <span style="font-weight: 600; color: var(--text-muted); font-size: 0.9rem;">Consultation Service:</span>
+                                <span style="font-weight: 600; color: var(--text-main); font-size: 0.9rem;">Cardiology Teleconsultation (30 Min)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+                                <span style="font-weight: 600; color: var(--text-muted); font-size: 0.9rem;">Date & Time Slot:</span>
+                                <span style="font-weight: 600; color: var(--text-main); font-size: 0.9rem;" id="paymentDateTimeSummary">-</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 0.5rem;">
+                                <span style="font-weight: 700; font-size: 1.1rem; color: var(--text-main);">Total Fee:</span>
+                                <span style="font-weight: 700; font-size: 1.6rem; color: var(--secondary); font-family: var(--font-heading);">$150 USD</span>
+                            </div>
+                        </div>
+
+                        <!-- Card payment input details simulation -->
+                        <div style="margin-bottom: 2rem;">
+                            <div class="form-group" style="margin-bottom: 1.25rem;">
+                                <label style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; display: block; color: var(--text-main);">Cardholder Name</label>
+                                <input type="text" placeholder="e.g. John Miller" style="width: 100%; padding: 0.85rem; border: 1px solid var(--border-color); border-radius: 6px; background-color: var(--bg-main); color: var(--text-main);" id="cardNameInput" required>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 1.25rem; position: relative;">
+                                <label style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; display: block; color: var(--text-main);">Card Number</label>
+                                <div style="position: relative;">
+                                    <input type="text" placeholder="1234 5678 9101 1121" style="width: 100%; padding: 0.85rem 2.5rem 0.85rem 0.85rem; border: 1px solid var(--border-color); border-radius: 6px; background-color: var(--bg-main); color: var(--text-main);" id="cardNumberInput" required>
+                                    <i class="fa-solid fa-credit-card" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                                </div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div class="form-group">
+                                    <label style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; display: block; color: var(--text-main);">Expiry Date</label>
+                                    <input type="text" placeholder="MM / YY" style="width: 100%; padding: 0.85rem; border: 1px solid var(--border-color); border-radius: 6px; background-color: var(--bg-main); color: var(--text-main);" id="cardExpiryInput" required>
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; display: block; color: var(--text-main);">CVC / CVV</label>
+                                    <input type="text" placeholder="123" style="width: 100%; padding: 0.85rem; border: 1px solid var(--border-color); border-radius: 6px; background-color: var(--bg-main); color: var(--text-main);" id="cardCvvInput" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+                            <button type="button" class="btn-outline" onclick="prevStep()" style="padding: 0.85rem 2rem;">
+                                <i class="fa-solid fa-arrow-left"></i> Back
+                            </button>
+                            <button type="button" class="btn-gold" id="payNowBtn" onclick="processPayment()" style="padding: 0.85rem 2.5rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+                                Pay $150 USD & Confirm <i class="fa-solid fa-lock"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 4: BOOKING SUCCESS PAGE -->
+                <div class="form-step" id="formStep4">
                     <div class="success-message-wrapper">
-                        <div class="success-icon">
+                        <div class="success-icon" style="background-color: rgba(37, 211, 102, 0.1); color: #25D366; animation: pulseSuccess 2s infinite;">
                             <i class="fa-solid fa-check"></i>
                         </div>
-                        <h2 style="font-family: var(--font-heading); font-size: 2.2rem; color: var(--color-title); margin-bottom: 0.5rem;">Consultation Scheduled!</h2>
-                        <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px;">Your online medical teleconsultation with Dr. Ayesha Sharma has been successfully booked. A confirmation email has been dispatched to your email address.</p>
+                        <h2 style="font-family: var(--font-heading); font-size: 2.2rem; color: var(--color-title); margin-bottom: 0.5rem;">Booking Confirmation</h2>
+                        <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px;">Your online cardiovascular teleconsultation with Dr. Ayesha Sharma has been registered successfully. Please complete the final step below to receive your Zoom link.</p>
                         
                         <!-- Details box -->
                         <div class="details-summary-box">
@@ -643,7 +703,7 @@
                             </div>
                             <div class="details-summary-row">
                                 <span class="details-summary-label">Teleconsultation Fee:</span>
-                                <span class="details-summary-val">$150 USD</span>
+                                <span class="details-summary-val" style="color: var(--secondary); font-weight: 700;">$150 USD (Pending Verification)</span>
                             </div>
                             <div class="details-summary-row">
                                 <span class="details-summary-label">Reference ID:</span>
@@ -651,12 +711,14 @@
                             </div>
                         </div>
 
-                        <!-- Video meeting card -->
-                        <div class="meeting-link-card">
-                            <h4 style="margin-bottom: 0; font-family: var(--font-heading); font-size: 1.25rem;">Secure Video Meeting Details</h4>
-                            <p style="font-size: 0.9rem; color: #cbd5e1; text-align: center; margin-bottom: 0.5rem;">Please use the button below to join the call at your scheduled time. The same link is saved in your confirmation email.</p>
-                            <a href="https://zoom.us/j/1234567890" target="_blank" class="meeting-btn" id="meetingBtn">
-                                <i class="fa-solid fa-video"></i> Join Zoom Meeting
+                        <!-- WhatsApp verification card -->
+                        <div class="meeting-link-card" style="background: linear-gradient(135deg, #0e1e12 0%, #050f07 100%); border: 1px solid rgba(37, 211, 102, 0.2); max-width: 600px;">
+                            <h4 style="margin-bottom: 0.5rem; font-family: var(--font-heading); font-size: 1.25rem; color: #25D366;"><i class="fa-brands fa-whatsapp"></i> Send Payment Screenshot on WhatsApp</h4>
+                            <p style="font-size: 0.95rem; color: #e2e8f0; text-align: center; margin-bottom: 1.5rem; line-height: 1.6;">
+                                Please send the screenshot image of your payment confirmation to our official WhatsApp support channel. Once sent, we will instantly verify your payment and dispatch your Zoom meeting link directly to you on WhatsApp.
+                            </p>
+                            <a href="#" target="_blank" class="meeting-btn" id="shareWhatsAppBtn" style="background-color: #25D366; color: #FFFFFF !important; font-weight: 700; border: none; font-size: 1rem; padding: 0.9rem 2.5rem; border-radius: 50px;">
+                                <i class="fa-brands fa-whatsapp" style="font-size: 1.25rem;"></i> Send Screenshot on WhatsApp
                             </a>
                         </div>
 

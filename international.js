@@ -53,22 +53,34 @@ window.nextStep = function () {
 
 window.prevStep = function () {
     if (currentStep === 2) setStep(1);
+    else if (currentStep === 3) setStep(2);
 };
 
 function setStep(n) {
-    document.getElementById(`formStep${currentStep}`).classList.remove('active');
-    document.getElementById(`stepNode${currentStep}`).classList.remove('active');
-    document.getElementById(`stepNode${currentStep}`).classList.add('completed');
-    // Mark circle with checkmark
-    document.querySelector(`#stepNode${currentStep} .step-circle`).innerHTML = '<i class="fa-solid fa-check"></i>';
+    if (n > currentStep) {
+        for (let i = currentStep; i < n; i++) {
+            document.getElementById(`formStep${i}`).classList.remove('active');
+            document.getElementById(`stepNode${i}`).classList.remove('active');
+            document.getElementById(`stepNode${i}`).classList.add('completed');
+            document.querySelector(`#stepNode${i} .step-circle`).innerHTML = '<i class="fa-solid fa-check"></i>';
+        }
+    } else {
+        for (let i = currentStep; i > n; i--) {
+            document.getElementById(`formStep${i}`).classList.remove('active');
+            document.getElementById(`stepNode${i}`).classList.remove('active');
+            document.getElementById(`stepNode${i}`).classList.remove('completed');
+            document.querySelector(`#stepNode${i} .step-circle`).innerHTML = i;
+        }
+        document.getElementById(`stepNode${n}`).classList.remove('completed');
+        document.querySelector(`#stepNode${n} .step-circle`).innerHTML = n;
+    }
 
     currentStep = n;
     document.getElementById(`formStep${currentStep}`).classList.add('active');
     document.getElementById(`stepNode${currentStep}`).classList.add('active');
-    document.getElementById(`stepNode${currentStep}`).classList.remove('completed');
 
     // Update stepper progress bar
-    const progress = ((currentStep - 1) / 2) * 90; // 90% max so it doesn't overflow
+    const progress = ((currentStep - 1) / 3) * 95;
     document.getElementById('stepperProgress').style.width = `${progress}%`;
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -266,36 +278,51 @@ window.submitBooking = function () {
         return;
     }
 
-    const btn = document.getElementById('confirmBookingBtn');
+    const tz = document.getElementById('timeZone').value;
+    document.getElementById('paymentDateTimeSummary').textContent =
+        `${formatDisplayDate(selectedDate)} at ${selectedTime} (${tz})`;
+
+    setStep(3);
+};
+
+// ─── Secure Payment Processing Simulation ────────────────────────────────────
+window.processPayment = function () {
+    const cardName = document.getElementById('cardNameInput').value.trim();
+    const cardNumber = document.getElementById('cardNumberInput').value.trim();
+    const cardExpiry = document.getElementById('cardExpiryInput').value.trim();
+    const cardCvv = document.getElementById('cardCvvInput').value.trim();
+
+    if (!cardName || !cardNumber || !cardExpiry || !cardCvv) {
+        showToast('Please fill in all card details for payment simulation.', 'error');
+        return;
+    }
+
+    const btn = document.getElementById('payNowBtn');
     const originalText = btn.innerHTML;
     btn.disabled = true;
-    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing Payment...';
 
-    // Simulate a brief loading / payment processing delay
+    // Simulate payment authorization delay (2 seconds)
     setTimeout(() => {
         const name = document.getElementById('fullName').value.trim();
         const tz = document.getElementById('timeZone').value;
         const ref = generateBookingRef();
 
-        // Populate success page
+        // Populate success page (Step 4)
         document.getElementById('summaryName').textContent = name;
         document.getElementById('summaryDateTime').textContent =
             `${formatDisplayDate(selectedDate)} at ${selectedTime} (${tz})`;
         document.getElementById('summaryReferenceId').textContent = ref;
 
-        // Move to confirmation step (step 3)
-        document.getElementById(`formStep${currentStep}`).classList.remove('active');
-        document.getElementById(`stepNode${currentStep}`).classList.remove('active');
-        document.getElementById(`stepNode${currentStep}`).classList.add('completed');
-        document.querySelector(`#stepNode${currentStep} .step-circle`).innerHTML = '<i class="fa-solid fa-check"></i>';
+        // Populate WhatsApp button link with details
+        const shareWhatsAppBtn = document.getElementById('shareWhatsAppBtn');
+        if (shareWhatsAppBtn) {
+            const textMsg = `Hello Dr. Ayesha Sharma Support, I have completed the consultation payment for ${name}. Ref ID: ${ref}, Date: ${formatDisplayDate(selectedDate)} at ${selectedTime} (${tz}). Here is my payment screenshot:`;
+            shareWhatsAppBtn.href = `https://wa.me/919810000000?text=${encodeURIComponent(textMsg)}`;
+        }
 
-        currentStep = 3;
-        document.getElementById(`formStep${currentStep}`).classList.add('active');
-        document.getElementById(`stepNode${currentStep}`).classList.add('active');
-        document.getElementById('stepperProgress').style.width = '100%';
-
-        showToast('Consultation booked successfully!', 'success');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setStep(4);
+        showToast('Payment successful & booked!', 'success');
 
         btn.innerHTML = originalText;
         btn.disabled = false;
