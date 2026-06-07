@@ -301,21 +301,40 @@
 </head>
 <body>
 
-    <nav class="navbar" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000;">
+    <!-- GLOBAL FIXED / FLOATING ELEMENTS -->
+    <nav class="navbar" id="navbar" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000;">
         <div class="nav-container">
-            <a href="index.html" class="brand-logo">Dr. Ayesha Sharma</a>
-            <div class="nav-links">
+            <a href="index.html#home" class="brand-logo">Dr. Ayesha Sharma</a>
+            
+            <button class="hamburger-btn" id="mobileMenuBtn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="nav-links" id="navLinks">
                 <a href="index.html#home" class="nav-link">Home</a>
                 <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#achievements" class="nav-link">Achievements</a>
+                <a href="index.html#education" class="nav-link">Education</a>
                 <a href="index.html#research" class="nav-link active">Research</a>
+                <a href="index.html#clinics" class="nav-link">Clinics</a>
+                <a href="index.html#reviews" class="nav-link">Reviews</a>
+                <a href="index.html#media" class="nav-link">Media</a>
                 <a href="index.html#contact" class="nav-link">Contact</a>
+                <a href="international.html" class="nav-link">International</a>
             </div>
+            
             <div class="nav-actions">
+                <button id="darkModeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <a href="login.html" class="nav-login-btn" id="openLoginModalBtn">
+                    <i class="fa-regular fa-user"></i> Patient Login
+                </a>
                 <a href="index.html#contact" class="btn-gold nav-book-btn">Book Appointment</a>
             </div>
         </div>
     </nav>
-    <div class='mobile-nav-overlay' id='mobileNavOverlay'></div>
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
     <main class="research-page">
         <div class="container">
@@ -497,6 +516,8 @@
             }, 4000);
         }
     </script>
+    <!-- Custom Scripts -->
+    <script src="script.js"></script>
 </body>
 </html>
 
